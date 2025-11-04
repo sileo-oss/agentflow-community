@@ -51,7 +51,7 @@ jobs:
           fetch-depth: 0  # Need full history for git diff
 
       - name: Fix git safe directory
-        run: git config --global --add safe.directory /github/workspace
+        run: git config --global --add safe.directory $GITHUB_WORKSPACE
 
       - name: Sync collections to API
         run: node /app/scripts/sync-collections.js
@@ -60,11 +60,12 @@ jobs:
           API_BASE_URL: ${{ secrets.API_BASE_URL }}
           LAST_SYNC_COMMIT: ${{ github.event.inputs.force_full_sync == 'true' && '' || vars.LAST_SYNC_COMMIT }}
           DRY_RUN: ${{ github.event.inputs.dry_run }}
+          COLLECTIONS_DIR: ${{ github.workspace }}/collections
 
       - name: Update sync state
         if: success() && github.event.inputs.dry_run != 'true'
         run: |
-          git config --global --add safe.directory /github/workspace
+          git config --global --add safe.directory $GITHUB_WORKSPACE
           CURRENT_COMMIT=$(git rev-parse HEAD)
           echo "LAST_SYNC_COMMIT=$CURRENT_COMMIT" >> $GITHUB_ENV
           echo "Updating LAST_SYNC_COMMIT to: $CURRENT_COMMIT"
