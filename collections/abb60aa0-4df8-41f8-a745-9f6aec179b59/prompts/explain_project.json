@@ -1,5 +1,5 @@
 {
   "name": "explain_project",
-  "description": "Category: Code Intelligence",
+  "description": "Explains project purpose, architecture, and components from documentation and codebase.",
   "content": "Explain the current project using the documentation and key files from the codebase. Focus on its purpose, architecture, and main components.\n\nPlease include insights from README, config files, and any core modules to ensure accuracy."
 }

@@ -1,5 +1,5 @@
 {
   "name": "review_test_coverage",
-  "description": "Category: Code Intelligence",
+  "description": "Analyzes test suite, coverage, and quality, providing improvement suggestions.",
   "content": "Analyze the project's test suite and testing strategy. Your goal is to assess how well the codebase is covered and whether the tests are meaningful and maintainable.\n\nPlease include:\n- A breakdown of test types (unit, integration, end-to-end) and their coverage\n- Identification of critical paths or modules lacking tests\n- Evaluation of test quality: Are they brittle, redundant, or overly coupled to implementation?\n- Suggestions for improving test structure, naming, and isolation\n- Recommendations for tools or practices to improve test reliability and developer confidence"
 }

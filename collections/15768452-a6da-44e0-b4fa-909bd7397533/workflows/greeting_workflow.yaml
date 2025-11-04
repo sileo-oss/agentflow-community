@@ -1,4 +1,4 @@
-name: Greeting workflow
+name: Greeting Workflow
 description: Basic example for workflow definition.
 diagram: |-
     graph TD
@@ -15,7 +15,7 @@ steps:
         - user_name
     allowed_next_steps:
       - farewell_step
-    continuation_logic: 'After getting user name, proceed to farewell'
+    continuation_logic: 'After getting user name, proceed to farewell_step'
     success_condition: 'User has provided their name'
   - name: farewell_step
     description: Say goodbye to the user

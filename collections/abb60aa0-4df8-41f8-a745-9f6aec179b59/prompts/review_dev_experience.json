@@ -1,5 +1,5 @@
 {
   "name": "review_dev_experience",
-  "description": "Category: Code Intelligence",
+  "description": "Evaluates developer experience, including onboarding, documentation, and project structure.",
   "content": "Evaluate the developer experience of working with this codebase. Focus on how easy it is to onboard, navigate, and contribute.\n\nPlease assess:\n\n- Clarity and completeness of documentation (README, CONTRIBUTING, etc.)\n\n- Project structure and naming conventions\n\n- Discoverability of key modules and entry points\n\n- Use of comments, logging, and error messages\n\n- Suggestions for improving DX through tooling, structure, or documentation"
 }
