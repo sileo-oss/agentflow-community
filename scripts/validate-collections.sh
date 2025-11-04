@@ -3,7 +3,8 @@
 # Validation script for AgentFlow Collections
 # Validates JSON/YAML syntax and collection structure
 
-set -e
+# Don't exit on first error - we want to collect all errors
+set +e
 
 echo "🔍 Validating AgentFlow Collections"
 echo "=================================="

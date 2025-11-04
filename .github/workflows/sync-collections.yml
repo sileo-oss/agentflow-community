@@ -33,9 +33,7 @@ jobs:
           sudo chmod +x /usr/local/bin/yq
 
       - name: Validate collections
-        run: |
-          chmod +x ./scripts/validate-collections.sh
-          ./scripts/validate-collections.sh
+        run: ./scripts/validate-collections.sh
 
   sync:
     runs-on: ubuntu-latest
