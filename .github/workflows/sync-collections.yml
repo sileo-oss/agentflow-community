@@ -68,26 +68,9 @@ jobs:
           git config --global --add safe.directory $GITHUB_WORKSPACE
           CURRENT_COMMIT=$(git rev-parse HEAD)
           echo "Updating LAST_SYNC_COMMIT to: $CURRENT_COMMIT"
-          
-          # Update the existing variable
-          RESPONSE=$(curl -s -w "%{http_code}" -X PATCH \
-            -H "Authorization: Bearer ${{ secrets.PAT_TOKEN }}" \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/variables/LAST_SYNC_COMMIT" \
-            -d "{\"name\":\"LAST_SYNC_COMMIT\",\"value\":\"$CURRENT_COMMIT\"}")
-          
-          HTTP_CODE="${RESPONSE: -3}"
-          RESPONSE_BODY="${RESPONSE%???}"
-          
-          if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "204" ]; then
-            echo "✅ Successfully updated LAST_SYNC_COMMIT variable"
-          else
-            echo "❌ Failed to update LAST_SYNC_COMMIT variable"
-            echo "HTTP Code: $HTTP_CODE"
-            echo "Response: $RESPONSE_BODY"
-            echo "Next sync will be a full sync"
-          fi
+          gh variable set LAST_SYNC_COMMIT --body "$CURRENT_COMMIT"
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
 
       - name: Report sync failure
         if: failure()
