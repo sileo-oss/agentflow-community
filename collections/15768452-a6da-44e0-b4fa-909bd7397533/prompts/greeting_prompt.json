@@ -1,5 +1,0 @@
-{
-  "name": "Greeting_prompt",
-  "description": "Simple prompt that greets the user",
-  "content": "Ask the user what is their name and welcome them."
-}

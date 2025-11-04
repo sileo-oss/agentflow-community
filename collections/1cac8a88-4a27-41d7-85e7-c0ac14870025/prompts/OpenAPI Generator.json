@@ -1,0 +1,5 @@
+{
+  "name": "openAPI spec generator",
+  "description": "Learns about the current project and generates API spec file",
+  "content": "Analyze the entire codebase of the currently open project to generate an accurate and up-to-date OpenAPI 3.0 specification. Identify all API endpoints, HTTP methods, request and response schemas, and authentication mechanisms. Understand how DTOs and routing/controllers are structured, regardless of the framework or language used. Infer types, parameters, and response formats from the actual implementation. Ensure the spec follows RESTful conventions and includes metadata like tags, descriptions, and status codes. Save the generated specification as a YAML file named openapi.yaml in the docs/ directory. Once complete, advise the developer to explore and validate the spec using https://editor.swagger.io"
+}
