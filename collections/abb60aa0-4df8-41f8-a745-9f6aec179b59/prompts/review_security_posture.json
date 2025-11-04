@@ -1,0 +1,5 @@
+{
+  "name": "review_security_posture",
+  "description": "Category: Code Intelligence",
+  "content": "Conduct a security posture review of the project. Focus on identifying common vulnerabilities and insecure practices.\n\nPlease include:\n\n- Review of authentication, authorization, and data validation flows\n\n- Identification of hardcoded secrets, insecure defaults, or weak cryptography\n\n- Evaluation of input sanitization and output encoding\n\n- Suggestions for improving security hygiene and adopting best practices\n\nAssume the project handles sensitive user data and must comply with common security standards."
+}

@@ -1,0 +1,257 @@
+name: Architecture Analysis and Documentation 
+description: Systematically analyze and document code-based projects by examining them from different architectural perspectives and generating comprehensive system design documentation
+
+diagram: |
+  flowchart TD
+    A[analyze_project_and_propose_perspectives] --> B[analyze_and_generate_diagram]
+    B --> C{Diagram Issues?}
+    C -->|Syntax Errors/Can't View| D[save_diagram_to_file]
+    C -->|No Issues| E[handle_diagram_feedback]
+    D --> E
+    E --> F{User Satisfied?}
+    F -->|Has Feedback/Changes| B
+    F -->|Approved| G[embed_in_documentation]
+    G --> H[ask_for_additional_analysis]
+    H --> I{Continue Analysis?}
+    I -->|Select Another Perspective| A
+    I -->|Finish| J[complete_workflow]
+    
+    A -.->|User selects perspective| B
+    B -.->|Present diagram for review| C
+    D -.->|User says 'continue'| E
+    E -.->|Collect feedback| F
+    F -.->|Regenerate with feedback| B
+    G -.->|Add to docs/system-design.md| H
+    H -.->|Show remaining perspectives| I
+
+steps:
+  - name: analyze_project_and_propose_perspectives
+    description: Comprehensively analyze the project and intelligently propose the most relevant architectural perspectives
+    actions:
+      - "Perform deep project discovery by scanning directory structure, configuration files, dependencies, and codebase patterns"
+      - "Identify project characteristics including: technology stack, architectural patterns, domain/industry, complexity level, scale, deployment model, and primary objectives"
+      - "Analyze the project's unique context: business domain, technical constraints, integration requirements, performance needs, security considerations, and operational requirements"
+      - "Determine project classification: web application, microservices, embedded system, data pipeline, ML/AI system, blockchain, IoT, desktop application, mobile app, library/framework, etc."
+      - "Assess project maturity, team size implications, and architectural decision drivers"
+      - "Based on comprehensive analysis, intelligently determine which architectural perspectives would provide the most value for understanding THIS specific project"
+      - "Generate a tailored list of analysis perspectives that are specifically relevant to the project's technology, domain, complexity, and objectives"
+      - "Ensure perspectives address the project's unique architectural concerns, not generic templates"
+      - "Consider domain-specific perspectives (e.g., for fintech: compliance architecture, for IoT: device management, for ML: model lifecycle)"
+      - "Present comprehensive project analysis and contextually relevant perspective options"
+      - "Allow user to select from intelligent suggestions or define custom perspectives based on their specific needs"
+    user_prompt: "I've completed a comprehensive analysis of your project. Here's what I discovered:\n\n**Project Characteristics:**\n[DETAILED PROJECT ANALYSIS INCLUDING TECHNOLOGY, DOMAIN, COMPLEXITY, OBJECTIVES, AND ARCHITECTURAL PATTERNS]\n\n**Recommended Analysis Perspectives:**\nBased on your project's specific characteristics, I've identified the most valuable perspectives for documentation:\n\n[INTELLIGENTLY GENERATED, PROJECT-SPECIFIC PERSPECTIVES WITH EXPLANATIONS OF WHY EACH IS RELEVANT]\n\nYou can:\n1. Select one of the recommended perspectives (each is tailored to your project's unique needs)\n2. Define your own custom perspective if you have specific documentation requirements\n\nWhich perspective would you like to explore first?"
+    context:
+      read_keys: []
+      write_keys:
+        - project_analysis
+        - project_type
+        - technologies_used
+        - project_purpose
+        - project_domain
+        - project_complexity
+        - architectural_patterns
+        - deployment_model
+        - business_objectives
+        - technical_constraints
+        - available_perspectives
+        - perspective_rationale
+        - selected_perspective
+        - is_custom_perspective
+        - custom_perspective_description
+    success_condition: Project has been analyzed and user has selected an analysis perspective to focus on
+    allowed_next_steps:
+      - analyze_and_generate_diagram
+    continuation_logic: After user selects a perspective, proceed to analyze_and_generate_diagram
+
+  - name: analyze_and_generate_diagram
+    description: Conduct intelligent, context-aware analysis and generate the most appropriate diagram representation
+    actions:
+      - "Apply deep analysis techniques specifically tailored to the selected perspective and project characteristics"
+      - "If this is a regeneration, carefully incorporate user feedback while maintaining analytical rigor"
+      - "Leverage understanding of project type, technology stack, domain, and complexity to guide analysis approach"
+      - "Adapt analysis methodology to the project's unique architectural patterns and constraints"
+      - "For each perspective, intelligently determine what aspects are most critical to analyze based on the project context"
+      - "Discover and map the actual architectural elements, relationships, and patterns present in THIS specific project"
+      - "Identify project-specific concerns, bottlenecks, integration points, and architectural decisions"
+      - "Gather comprehensive information that reveals meaningful insights about the selected perspective"
+      - "Determine the most effective diagram type and format based on what will best communicate the findings"
+      - "Consider multiple diagram formats (Mermaid, PlantUML, ASCII, or hybrid approaches) and choose the most suitable"
+      - "Create diagrams that accurately represent the discovered architecture, not generic templates"
+      - "Ensure diagrams capture the project's unique characteristics, complexity, and architectural decisions"
+      - "Include relevant technical details, relationships, and context that developers need to understand"
+      - "Adapt diagram complexity and detail level to match the project's actual complexity"
+      - "If incorporating feedback, clearly highlight changes and improvements made"
+      - "Present analysis findings with clear explanations of what was discovered and why it matters"
+    user_prompt: "I've completed the detailed analysis and generated a diagram. [If this is a regeneration: I've incorporated your feedback and made the following changes: [LIST CHANGES]]\n\n**Analysis Results:**\n[DETAILED ANALYSIS SUMMARY]\n\n**Generated Diagram:**\n[DIAGRAM WILL BE DISPLAYED HERE]\n\nIs this diagram clear and helpful for understanding the project? Please let me know if:\n- The diagram displays correctly\n- You have any feedback or suggestions for improvement\n- You're satisfied with this representation"
+    context:
+      read_keys:
+        - project_analysis
+        - project_type
+        - technologies_used
+        - project_purpose
+        - project_domain
+        - project_complexity
+        - architectural_patterns
+        - deployment_model
+        - business_objectives
+        - technical_constraints
+        - available_perspectives
+        - perspective_rationale
+        - selected_perspective
+        - user_feedback_comments
+        - is_custom_perspective
+        - custom_perspective_description
+      write_keys:
+        - detailed_analysis_results
+        - perspective_specific_findings
+        - generated_diagram
+        - diagram_format
+    success_condition: Detailed analysis has been completed and diagram has been generated and presented to user for review
+    allowed_next_steps:
+      - handle_diagram_feedback
+      - save_diagram_to_file
+    continuation_logic: If user reports syntax errors, can't view diagram, or requests to save to file, go to save_diagram_to_file. Otherwise go to handle_diagram_feedback for user feedback processing
+
+  - name: save_diagram_to_file
+    description: Save diagram to file when user reports viewing issues
+    actions:
+      - "Write the generated diagram to generated_diagram.md file"
+      - "Provide clear instructions to the user on how to view and potentially fix the diagram"
+      - "Explain common syntax issues and how to resolve them"
+      - "Ask user to either fix the diagram manually or provide specific error messages"
+    user_prompt: "I've saved the diagram to 'generated_diagram.md' for you to review. Please:\n1. Open the file and check if you can view the diagram\n2. If there are syntax errors, either fix them manually or share the specific error messages with me\n3. Once the diagram is working, let me know by saying 'continue' so we can proceed to the review step"
+    context:
+      read_keys:
+        - generated_diagram
+        - diagram_format
+      write_keys:
+        - diagram_file_saved
+    success_condition: Diagram has been saved to file and user has been instructed on next steps
+    allowed_next_steps:
+      - handle_diagram_feedback
+    continuation_logic: After user fixes diagram issues and says continue, proceed to handle_diagram_feedback
+
+  - name: handle_diagram_feedback
+    description: Process user feedback and determine next action
+    actions:
+      - "Review user feedback on the diagram"
+      - "If user is satisfied with the diagram, prepare to embed it in documentation"
+      - "If user has suggestions, improvements, or requests changes, capture the feedback for diagram regeneration"
+      - "Store user comments and requirements for the next analysis iteration"
+    user_prompt: "Thank you for reviewing the diagram. Please let me know:\n\n- Are you satisfied with this diagram representation?\n- If not, what specific changes or improvements would you like to see?\n\nIf you approve, I'll embed it in the system design documentation. If you have feedback, I'll regenerate the diagram incorporating your suggestions."
+    context:
+      read_keys:
+        - generated_diagram
+        - diagram_format
+        - diagram_file_saved
+      write_keys:
+        - user_feedback_comments
+        - user_approval_status
+    success_condition: User has either approved the diagram or provided specific feedback for regeneration
+    allowed_next_steps:
+      - analyze_and_generate_diagram
+      - embed_in_documentation
+    continuation_logic: If user provides feedback or requests changes, return to analyze_and_generate_diagram to regenerate with feedback incorporated. If user approves the diagram, proceed to embed_in_documentation
+
+  - name: embed_in_documentation
+    description: Create comprehensive, project-specific documentation with intelligent organization
+    actions:
+      - "Create the docs/architecture/ directory structure if it doesn't exist"
+      - "Generate meaningful filename based on the actual perspective analyzed, reflecting project-specific terminology and domain"
+      - "Create contextually appropriate file naming that developers will find intuitive for this specific project"
+      - "Develop comprehensive perspective-specific documentation that includes:"
+      - "  - Executive summary of key findings and architectural insights"
+      - "  - Detailed analysis results with project-specific context"
+      - "  - Diagram with comprehensive explanation and interpretation guide"
+      - "  - Architectural decisions and rationale discovered during analysis"
+      - "  - Technology-specific considerations and implications"
+      - "  - Recommendations for developers working with this perspective"
+      - "Structure content to match the project's complexity and team needs"
+      - "Create or enhance the main docs/system-design.md as an intelligent index"
+      - "In the main index, provide project overview that reflects actual project characteristics"
+      - "Generate contextual links and navigation that makes sense for this project's architecture"
+      - "Update table of contents with meaningful descriptions of what each perspective reveals"
+      - "Ensure documentation quality matches the project's professional standards and domain requirements"
+      - "Organize content hierarchy based on project complexity and architectural significance"
+    context:
+      read_keys:
+        - generated_diagram
+        - selected_perspective
+        - detailed_analysis_results
+        - user_approval_status
+        - user_feedback_comments
+        - project_analysis
+        - project_type
+        - technologies_used
+        - project_purpose
+        - project_domain
+        - project_complexity
+        - architectural_patterns
+        - deployment_model
+        - business_objectives
+        - technical_constraints
+        - perspective_rationale
+      write_keys:
+        - documentation_updated
+        - embedded_diagram_section
+        - perspective_file_created
+        - main_index_updated
+        - created_file_path
+    success_condition: Comprehensive, project-specific documentation has been created with appropriate depth and organization for the project's characteristics
+    allowed_next_steps:
+      - ask_for_additional_analysis
+    continuation_logic: After embedding diagram in perspective-specific file and updating main index, ask user if they want to analyze from another perspective
+
+  - name: ask_for_additional_analysis
+    description: Ask user if they want to continue with analysis from another perspective
+    actions:
+      - "Show the user which perspectives have been completed and their corresponding files"
+      - "Display the remaining available perspectives that haven't been analyzed yet"
+      - "Mention the main index file location (docs/system-design.md) for easy navigation"
+      - "Ask if they want to continue with another perspective or finish the workflow"
+    user_prompt: "Great! I've added the [PERSPECTIVE] analysis to your documentation:\n- Created: [PERSPECTIVE_FILE_PATH]\n- Updated main index: docs/system-design.md\n\nWould you like to analyze the project from another perspective? Here are the remaining suggested options:\n\n[LIST REMAINING PERSPECTIVES]\n\nYou can:\n1. Select another suggested perspective to analyze\n2. Define a custom perspective you'd like me to explore\n3. Finish the workflow\n\nWhat would you like to do?"
+    context:
+      read_keys:
+        - available_perspectives
+        - selected_perspective
+        - documentation_updated
+        - embedded_diagram_section
+        - perspective_file_created
+        - main_index_updated
+        - created_file_path
+      write_keys:
+        - user_continuation_choice
+        - remaining_perspectives
+        - completed_perspectives
+    success_condition: User has decided whether to continue with another analysis or finish
+    allowed_next_steps:
+      - analyze_project_and_propose_perspectives
+      - complete_workflow
+    continuation_logic: If user selects another perspective, return to analyze_project_and_propose_perspectives to show available perspectives and get selection. If user wants to finish, proceed to complete_workflow
+
+  - name: complete_workflow
+    description: Complete the architecture analysis and documentation workflow
+    actions:
+      - "Provide a summary of all the analysis perspectives that were completed"
+      - "List all the perspective-specific files that were created in docs/architecture/"
+      - "Confirm the location of the main index documentation (docs/system-design.md)"
+      - "Offer any final tips for maintaining or extending the documentation"
+      - "Suggest how developers can navigate and use the organized documentation structure"
+      - "Thank the user for using the workflow"
+    user_prompt: "Workflow completed! I've successfully documented your project from [LIST COMPLETED PERSPECTIVES] perspective(s).\n\n**Generated Documentation:**\n- Main index: docs/system-design.md\n- Perspective files: [LIST CREATED PERSPECTIVE FILES]\n\nDevelopers can now easily navigate to specific architectural views they need. You can run this workflow again anytime to add more perspectives or update the documentation as your project evolves."
+    context:
+      read_keys:
+        - documentation_updated
+        - available_perspectives
+        - user_continuation_choice
+        - completed_perspectives
+        - embedded_diagram_section
+        - perspective_file_created
+        - main_index_updated
+        - created_file_path
+      write_keys:
+        - workflow_completion_summary
+        - final_file_list
+    success_condition: Workflow has been completed and user has been informed of all created files
+    allowed_next_steps: []
+    continuation_logic: This is the final step of the workflow

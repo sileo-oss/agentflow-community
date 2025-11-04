@@ -41,8 +41,8 @@ Thank you for your interest in contributing to AgentFlow Collections! This guide
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/agentflow-collections.git
-cd agentflow-collections
+git clone https://github.com/YOUR_USERNAME/agentflow-community.git
+cd agentflow-community
 
 # Create a branch for your changes
 git checkout -b feature/my-new-collection

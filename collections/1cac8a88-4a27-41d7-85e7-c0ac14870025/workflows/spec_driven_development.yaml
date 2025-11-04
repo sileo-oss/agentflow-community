@@ -1,0 +1,313 @@
+name: Spec Driven Development
+description: Systematic development of features from structured spec based tasks breakdown with validation, progress tracking, and review loop
+diagram: |-
+  flowchart TD
+    Start([Start: Spec Driven Development]) --> A[request_task_details]
+    A -->|User provides plan name and tasks| B[validate_plan_and_tasks]
+    B -->|Check plan exists and tasks are valid| Decision1{Validation successful?}
+    Decision1 -->|No: Plan/tasks invalid| C[report_validation_error]
+    C -->|User provides new details| B
+    Decision1 -->|Yes: All valid| D[mark_tasks_in_progress]
+    D -->|Mark tasks as in-progress| E[implement_tasks]
+    E -->|Code based on design & requirements| F[present_for_review]
+    F -->|Show implementation summary| Decision2{User approved?}
+    Decision2 -->|No: Feedback provided| G[handle_feedback]
+    G -->|Analyze feedback vs docs| Decision3{Conflicts with docs?}
+    Decision3 -->|Yes: Changes conflict| H[update_docs_step]
+    H -->|Update design.md/requirements.md| I[implement_changes]
+    Decision3 -->|No: Aligned with docs| I
+    I -->|Apply feedback changes| F
+    Decision2 -->|Yes: Approved| J[mark_tasks_complete]
+    J -->|Mark tasks as complete| K[ask_continue]
+    K -->|Check remaining tasks| Decision4{Continue?}
+    Decision4 -->|Yes: More tasks to do| A
+    Decision4 -->|No: All done| L[workflow_complete]
+    L --> End([End: Implementation Complete])
+
+steps:
+  - name: request_task_details
+    description: Ask user for plan name and tasks to implement
+    actions:
+      - "Greet the user and explain the workflow purpose"
+      - "Ask the user to provide the plan name"
+      - "Ask which task(s) they want to implement (task numbers or descriptions)"
+      - "Store the plan name and requested tasks for validation"
+    user_prompt: |-
+      Welcome to the Task Implementation Workflow!
+      
+      Please provide the following details:
+      1. What is the plan name?
+      2. Which task(s) do you want to implement? (provide task numbers or descriptions)
+    success_condition: User has provided plan name and task identifiers
+    context:
+      read_keys: []
+      write_keys:
+        - plan_name
+        - requested_tasks
+    allowed_next_steps:
+      - validate_plan_and_tasks
+    continuation_logic: After receiving user input, proceed to validate_plan_and_tasks
+
+  - name: validate_plan_and_tasks
+    description: Verify that the plan exists and requested tasks are valid and not completed
+    actions:
+      - "Check if the directory specs/<plan_name> exists"
+      - "Read the file specs/<plan_name>/tasks.md"
+      - "Search for the requested task(s) in tasks.md"
+      - "Verify that the tasks exist and are not already marked as [x] (completed)"
+      - "Verify that the tasks are not marked as [-] (in progress by someone else)"
+      - "Read specs/<plan_name>/design.md for implementation guidance"
+      - "Read specs/<plan_name>/requirements.md for requirements details"
+      - "Store validation result: valid=true if all checks pass, otherwise valid=false with error details"
+    success_condition: Plan and tasks have been validated
+    context:
+      read_keys:
+        - plan_name
+        - requested_tasks
+      write_keys:
+        - validation_result
+        - validation_error
+        - tasks_content
+        - design_content
+        - requirements_content
+        - task_numbers
+    allowed_next_steps:
+      - mark_tasks_in_progress
+      - report_validation_error
+    continuation_logic: If validation_result is valid=true, proceed to mark_tasks_in_progress. Otherwise, go to report_validation_error
+
+  - name: report_validation_error
+    description: Inform user about validation issues and request correct details
+    actions:
+      - "Explain the validation error clearly (plan doesn't exist, tasks not found, or tasks already completed/in-progress)"
+      - "Provide helpful guidance on what the user should check"
+      - "Ask the user to provide corrected plan name and task details"
+    user_prompt: |-
+      There was an issue with your request:
+      
+      {validation_error}
+      
+      Please verify and provide the correct details:
+      1. Plan name (check that it exists in the specs/ directory)
+      2. Task numbers or descriptions (check tasks.md for available tasks)
+    success_condition: User has been informed of the error and prompted for correct details
+    context:
+      read_keys:
+        - validation_error
+      write_keys:
+        - plan_name
+        - requested_tasks
+    allowed_next_steps:
+      - validate_plan_and_tasks
+    continuation_logic: After user provides new details, return to validate_plan_and_tasks
+
+  - name: mark_tasks_in_progress
+    description: Update task checkboxes from [ ] to [-] to indicate work in progress
+    actions:
+      - "Open specs/<plan_name>/tasks.md for editing"
+      - "For each requested task, find the checkbox [ ] and replace it with [-]"
+      - "Save the updated tasks.md file"
+      - "Confirm to the user that tasks have been marked as in-progress"
+    success_condition: Task checkboxes have been updated to in-progress state
+    context:
+      read_keys:
+        - plan_name
+        - requested_tasks
+        - task_numbers
+        - tasks_content
+      write_keys:
+        - tasks_marked_in_progress
+    allowed_next_steps:
+      - implement_tasks
+    continuation_logic: After marking tasks in progress, proceed to implement_tasks
+
+  - name: implement_tasks
+    description: Implement the requested features based on design and requirements
+    actions:
+      - "Review the specs/<plan_name>/design.md file for architecture and design decisions"
+      - "Review the specs/<plan_name>/requirements.md file for specific requirements"
+      - "Identify all files that need to be created or modified"
+      - "Implement the features according to the design and requirements"
+      - "Follow best practices and coding standards"
+      - "Ensure code quality and proper error handling"
+      - "Create a summary of what was implemented (files changed, key features added)"
+    success_condition: All requested tasks have been implemented
+    context:
+      read_keys:
+        - plan_name
+        - requested_tasks
+        - design_content
+        - requirements_content
+      write_keys:
+        - implementation_summary
+        - files_modified
+    allowed_next_steps:
+      - present_for_review
+    continuation_logic: After implementation is complete, proceed to present_for_review
+
+  - name: present_for_review
+    description: Show implementation summary and request user review
+    actions:
+      - "Present a clear summary of the implementation"
+      - "List all files that were created or modified"
+      - "Highlight key features that were added"
+      - "Ask the user to review the changes and provide feedback"
+      - "Wait for user's review response (approval or comments)"
+    user_prompt: |-
+      Implementation complete! Here's a summary of what was done:
+      
+      {implementation_summary}
+      
+      Files modified: {files_modified}
+      
+      Please review the changes. Do you approve these changes, or do you have comments/feedback?
+    success_condition: User has reviewed the implementation and provided their response
+    context:
+      read_keys:
+        - implementation_summary
+        - files_modified
+      write_keys:
+        - review_response
+        - user_approved
+    allowed_next_steps:
+      - mark_tasks_complete
+      - handle_feedback
+    continuation_logic: If user approved (user_approved=true), proceed to mark_tasks_complete. Otherwise, go to handle_feedback
+
+  - name: handle_feedback
+    description: Process user feedback and check alignment with documentation
+    actions:
+      - "Carefully read and understand the user's comments"
+      - "Analyze whether the requested changes align with the design.md and requirements.md"
+      - "If changes conflict with documented design/requirements, flag for document update"
+      - "Store feedback analysis including whether docs need updating"
+    success_condition: User feedback has been analyzed
+    context:
+      read_keys:
+        - review_response
+        - design_content
+        - requirements_content
+        - plan_name
+      write_keys:
+        - feedback_analysis
+        - needs_doc_update
+        - doc_conflicts
+    allowed_next_steps:
+      - update_docs_step
+      - implement_changes
+    continuation_logic: If needs_doc_update=true, proceed to update_docs_step. Otherwise, go directly to implement_changes
+
+  - name: update_docs_step
+    description: Handle documentation synchronization when feedback conflicts with specs
+    actions:
+      - "Explain to the user that their requested changes conflict with the documented design or requirements"
+      - "Show specific conflicts between feedback and documentation"
+      - "Ask if the user wants to update the design.md and/or requirements.md files to align with the requested changes"
+      - "If user approves, update the relevant documentation files"
+      - "If user declines, explain that implementation will follow existing documentation"
+    user_prompt: |-
+      Your feedback includes changes that conflict with the documented design/requirements:
+      
+      {doc_conflicts}
+      
+      Would you like to update the design.md and/or requirements.md files to align with your requested changes?
+      This ensures all documentation stays in sync with the implementation.
+    success_condition: Documentation has been updated or user has decided to keep existing docs
+    context:
+      read_keys:
+        - doc_conflicts
+        - plan_name
+        - design_content
+        - requirements_content
+      write_keys:
+        - docs_updated
+        - updated_design_content
+        - updated_requirements_content
+    allowed_next_steps:
+      - implement_changes
+    continuation_logic: After handling documentation updates, proceed to implement_changes
+
+  - name: implement_changes
+    description: Apply changes based on user feedback
+    actions:
+      - "Implement the changes requested in the user's feedback"
+      - "Use updated documentation if docs were modified in previous step"
+      - "Ensure all feedback points are addressed"
+      - "Create a new implementation summary showing what was changed"
+    success_condition: Feedback has been incorporated into the implementation
+    context:
+      read_keys:
+        - review_response
+        - feedback_analysis
+        - plan_name
+        - updated_design_content
+        - updated_requirements_content
+      write_keys:
+        - implementation_summary
+        - files_modified
+    allowed_next_steps:
+      - present_for_review
+    continuation_logic: After implementing changes, loop back to present_for_review for another review cycle
+
+  - name: mark_tasks_complete
+    description: Update task checkboxes from [-] to [x] to indicate completion
+    actions:
+      - "Open specs/<plan_name>/tasks.md for editing"
+      - "For each implemented task, find the checkbox [-] and replace it with [x]"
+      - "Save the updated tasks.md file"
+      - "Count how many tasks remain with [ ] (not started) status"
+      - "Store the count of remaining tasks"
+    success_condition: Completed tasks have been marked with [x] in tasks.md
+    context:
+      read_keys:
+        - plan_name
+        - requested_tasks
+        - task_numbers
+      write_keys:
+        - tasks_marked_complete
+        - remaining_tasks_count
+        - remaining_tasks_list
+    allowed_next_steps:
+      - ask_continue
+    continuation_logic: After marking tasks complete, proceed to ask_continue
+
+  - name: ask_continue
+    description: Ask user if they want to implement more tasks or finish
+    actions:
+      - "Inform the user how many tasks remain unimplemented"
+      - "If tasks remain, list them for the user"
+      - "Ask if they want to continue implementing more tasks"
+      - "If no tasks remain, congratulate them on completing all tasks"
+    user_prompt: |-
+      Great work! The requested tasks have been completed and marked.
+      
+      Remaining tasks: {remaining_tasks_count}
+      {remaining_tasks_list}
+      
+      Would you like to continue implementing additional tasks?
+    success_condition: User has decided whether to continue or finish
+    context:
+      read_keys:
+        - remaining_tasks_count
+        - remaining_tasks_list
+      write_keys:
+        - continue_response
+    allowed_next_steps:
+      - request_task_details
+      - workflow_complete
+    continuation_logic: If user wants to continue (continue_response=yes), return to request_task_details. Otherwise, proceed to workflow_complete
+
+  - name: workflow_complete
+    description: Wrap up the workflow and summarize accomplishments
+    actions:
+      - "Summarize the total work accomplished in this session"
+      - "Thank the user for using the workflow"
+      - "Remind them that all progress has been tracked in tasks.md"
+    success_condition: Workflow has been completed successfully
+    context:
+      read_keys:
+        - plan_name
+        - tasks_marked_complete
+      write_keys: []
+    allowed_next_steps: []
+    continuation_logic: This is the final step. Workflow ends here.

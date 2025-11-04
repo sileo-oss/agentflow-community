@@ -1,0 +1,30 @@
+name: Greeting workflow
+description: Basic example for workflow definition.
+diagram: |-
+    graph TD
+        greeting_step[Greeting Step: Greet the user] --> farewell_step[Farewell Step: Say goodbye to the user]
+steps:
+  - name: greeting_step
+    description: Greet the user
+    actions:
+      - 'Greet the user and ask for their name'
+    user_prompt: 'Please tell me your name'
+    context:
+      read_keys: []
+      write_keys:
+        - user_name
+    allowed_next_steps:
+      - farewell_step
+    continuation_logic: 'After getting user name, proceed to farewell'
+    success_condition: 'User has provided their name'
+  - name: farewell_step
+    description: Say goodbye to the user
+    actions:
+      - 'Thank the user and say goodbye using their name'
+    context:
+      read_keys:
+        - user_name
+      write_keys: []
+    allowed_next_steps: []
+    continuation_logic: 'Workflow complete'
+    success_condition: 'User has been thanked and workflow completed'

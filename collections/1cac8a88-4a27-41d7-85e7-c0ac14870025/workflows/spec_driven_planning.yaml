@@ -1,0 +1,402 @@
+name: Spec Driven Planning
+description: Break down complex programming work into manageable tasks by creating detailed specifications. Guides developers through creating requirements, design, and task breakdown documents for streamlined AI-assisted development.
+diagram: |-
+  flowchart TD
+    Start([Start: Spec Driven Planning]) --> A[gather_initial_requirements]
+
+    A -->|Capture project description| B[clarify_requirements]
+
+    B -->|Requirements unclear| B
+    B -->|Requirements clear| C[determine_plan_name]
+
+    C -->|Generate plan name| D[write_requirements_document]
+
+    D -->|Create specs/plan_name/requirements.md| E[present_requirements_review]
+
+    E -->|Request user review| F[handle_requirements_feedback]
+
+    F -->|Changes requested| E
+    F -->|Approved| G[clarify_design_details]
+
+    G -->|Missing design info| G
+    G -->|Design info complete| H[write_design_document]
+
+    H -->|Create specs/plan_name/design.md| I[present_design_review]
+
+    I -->|Request user review| J[handle_design_feedback]
+
+    J -->|Changes requested| I
+    J -->|May update requirements| D
+    J -->|Approved| K[create_tasks_breakdown]
+
+    K -->|Create specs/plan_name/tasks.md| L[present_tasks_review]
+
+    L -->|Request user review| M[handle_tasks_feedback]
+
+    M -->|Changes requested| L
+    M -->|May update design/requirements| H
+    M -->|Approved & aligned| N[workflow_complete]
+
+    N --> End([End: Implementation Ready])
+
+steps:
+  - name: gather_initial_requirements
+    description: Collect initial project description and implementation goals from the user
+    actions:
+      - "Greet the user and explain that you'll help them create a detailed implementation plan"
+      - "Ask the user to describe what they want to implement"
+      - "Ask how the new functionality should work"
+      - "Capture the initial project description and requirements"
+      - "Store the information for analysis in the next step"
+    user_prompt: |-
+      Welcome to Spec Driven Planning! I'll help you create a detailed implementation plan.
+      
+      Please describe:
+      1. What do you want to implement?
+      2. How should the new functionality work?
+      
+      Provide as much detail as you can about your project or feature.
+    context:
+      read_keys: []
+      write_keys:
+        - project_description
+        - initial_requirements
+    allowed_next_steps:
+      - clarify_requirements
+    continuation_logic: "After capturing initial requirements, proceed to analyze and clarify them"
+    success_condition: "User has provided initial description of what they want to implement and how it should work"
+
+  - name: clarify_requirements
+    description: Analyze requirements completeness and ask targeted clarification questions until all details are clear
+    actions:
+      - "Analyze the current requirements to determine if this is a new project or feature in existing project"
+      - "Identify any missing critical details or ambiguous aspects"
+      - "If requirements are incomplete or unclear, ask specific clarification questions"
+      - "If requirements are sufficiently detailed and clear, prepare to move to plan naming"
+      - "Store any additional clarifications provided by the user"
+    user_prompt: |-
+      Let me analyze your requirements...
+      
+      I need clarification on the following points:
+      [Agent will list specific questions based on analysis]
+      
+      Please provide additional details to help me understand your requirements better.
+    context:
+      read_keys:
+        - project_description
+        - initial_requirements
+        - additional_clarifications
+      write_keys:
+        - clarified_requirements
+        - missing_details
+        - additional_clarifications
+        - project_type
+    allowed_next_steps:
+      - clarify_requirements
+      - determine_plan_name
+    continuation_logic: "If requirements are still incomplete or unclear, stay in clarify_requirements. If requirements are sufficiently detailed, proceed to determine_plan_name"
+    success_condition: "Requirements are complete, clear, and contain all necessary details for implementation planning"
+
+  - name: determine_plan_name
+    description: Determine an appropriate name for the implementation plan based on the requirements
+    actions:
+      - "Analyze the clarified requirements to understand the scope and nature of the project"
+      - "Generate an appropriate plan name that reflects the project/feature being implemented"
+      - "The plan name will be used for creating the specs directory structure"
+      - "Ensure the name is descriptive but concise, suitable for directory naming"
+    context:
+      read_keys:
+        - clarified_requirements
+        - project_type
+      write_keys:
+        - plan_name
+    allowed_next_steps:
+      - write_requirements_document
+    continuation_logic: "After determining the plan name, proceed to write the requirements document"
+    success_condition: "Plan name has been determined and is suitable for directory structure"
+
+  - name: write_requirements_document
+    description: Create a detailed requirements.md document with numbered requirements
+    actions:
+      - "Create the ./specs/<plan_name>/ directory structure"
+      - "Write a comprehensive requirements.md document based on the clarified requirements"
+      - "Number each requirement clearly (1, 2, 3, etc.)"
+      - "Ensure the document is easily readable by both users and AI agents"
+      - "Include all functional and non-functional requirements"
+      - "Save the document to ./specs/<plan_name>/requirements.md"
+    context:
+      read_keys:
+        - clarified_requirements
+        - plan_name
+      write_keys:
+        - requirements_content
+        - requirements_file_path
+    allowed_next_steps:
+      - present_requirements_review
+    continuation_logic: "After writing the requirements document, proceed to present it for user review"
+    success_condition: "Requirements document has been created and saved with numbered, detailed requirements"
+
+  - name: present_requirements_review
+    description: Present requirements summary to user and ask for review
+    actions:
+      - "Present a concise summary of the requirements document to the user"
+      - "Ask the user to review the requirements and provide feedback"
+      - "Do not handle feedback in this step - only present and ask for review"
+    user_prompt: |-
+      I've created your requirements document. Here's a summary:
+      
+      [Agent will provide summary of requirements]
+      
+      Please review the requirements. Do you approve this document, or do you have any comments or changes?
+    context:
+      read_keys:
+        - requirements_content
+        - requirements_file_path
+      write_keys:
+        - requirements_review_requested
+    allowed_next_steps:
+      - handle_requirements_feedback
+    continuation_logic: "After presenting requirements for review, proceed to handle user feedback"
+    success_condition: "Requirements summary has been presented and user feedback has been requested"
+
+  - name: handle_requirements_feedback
+    description: Process user feedback on requirements and update document if needed
+    actions:
+      - "Analyze user feedback on the requirements document"
+      - "If user approves, prepare to move to design phase"
+      - "If user provides comments or requests changes, update the requirements document accordingly"
+      - "If changes were made, loop back to present the updated requirements for review"
+      - "Continue until the user approves the requirements"
+    context:
+      read_keys:
+        - requirements_content
+        - requirements_file_path
+        - requirements_review_requested
+      write_keys:
+        - requirements_approved
+        - user_requirements_feedback
+        - requirements_updated
+    allowed_next_steps:
+      - present_requirements_review
+      - clarify_design_details
+    continuation_logic: "If user approves requirements, proceed to clarify_design_details. If changes were made, go back to present_requirements_review"
+    success_condition: "User feedback has been processed and appropriate next action determined (proceed to next phase or loop back for re-review)"
+
+  - name: clarify_design_details
+    description: Identify and gather any missing information critical for writing the design document
+    actions:
+      - "Analyze the requirements to identify what design information might be missing"
+      - "For new projects, check if tech stack, architecture preferences, or platform details are specified"
+      - "For features in existing projects, check if integration points or constraints are clear"
+      - "Ask user for any critical design details that are missing"
+      - "If all necessary design information is available, prepare to write the design document"
+    user_prompt: |-
+      Before I create the design document, I need to clarify some design-specific details:
+      
+      [Agent will list specific questions about tech stack, architecture, constraints, etc.]
+      
+      Please provide these details so I can create a comprehensive design.
+    context:
+      read_keys:
+        - requirements_content
+        - project_type
+        - design_clarifications
+      write_keys:
+        - design_clarifications
+        - tech_stack_info
+        - architecture_preferences
+    allowed_next_steps:
+      - clarify_design_details
+      - write_design_document
+    continuation_logic: "If design details are still missing, stay in clarify_design_details. If all necessary information is available, proceed to write_design_document"
+    success_condition: "All critical design information has been gathered from the user"
+
+  - name: write_design_document
+    description: Create a detailed design.md document with architecture, structure, and implementation details
+    actions:
+      - "Write a comprehensive design.md document based on the requirements and design clarifications"
+      - "Include system architecture and project structure"
+      - "Detail implementation specifics such as classes, methods, and key components"
+      - "Outline a comprehensive testing plan with different types of tests needed"
+      - "Reference related requirements by their numbers to justify design decisions"
+      - "Ensure the design is detailed enough for implementation by AI agents"
+      - "Save the document to ./specs/<plan_name>/design.md"
+    context:
+      read_keys:
+        - requirements_content
+        - design_clarifications
+        - tech_stack_info
+        - architecture_preferences
+        - plan_name
+      write_keys:
+        - design_content
+        - design_file_path
+    allowed_next_steps:
+      - present_design_review
+    continuation_logic: "After writing the design document, proceed to present it for user review"
+    success_condition: "Design document has been created with comprehensive architecture, implementation details, and testing plan"
+
+  - name: present_design_review
+    description: Present design document to user and ask for review
+    actions:
+      - "Present the design document to the user for review"
+      - "Ask for feedback and comments on the design"
+      - "Do not handle feedback in this step - only present and ask for review"
+    user_prompt: |-
+      I've created your design document. Please review the design and let me know:
+      
+      1. Do you approve this design approach?
+      2. Are there any changes or improvements you'd like to see?
+      3. Does the design properly address all your requirements?
+      
+      Please provide your feedback or approval.
+    context:
+      read_keys:
+        - design_content
+        - design_file_path
+      write_keys:
+        - design_review_requested
+    allowed_next_steps:
+      - handle_design_feedback
+    continuation_logic: "After presenting design for review, proceed to handle user feedback"
+    success_condition: "Design document has been presented and user feedback has been requested"
+
+  - name: handle_design_feedback
+    description: Process user feedback on design and update documents if needed
+    actions:
+      - "Analyze user feedback on the design document"
+      - "If user approves, prepare to move to task breakdown phase"
+      - "If user provides feedback, update the design document accordingly"
+      - "If user comments require changes to requirements, update the requirements document as well"
+      - "Ensure all documents remain aligned after any changes"
+      - "If changes were made, loop back to present the updated design for review"
+      - "Continue until user approves the design"
+    context:
+      read_keys:
+        - design_content
+        - requirements_content
+        - design_file_path
+        - requirements_file_path
+        - design_review_requested
+      write_keys:
+        - design_approved
+        - user_design_feedback
+        - cross_document_updates
+        - design_updated
+    allowed_next_steps:
+      - present_design_review
+      - create_tasks_breakdown
+    continuation_logic: "If user approves design, proceed to create_tasks_breakdown. If changes were made, go back to present_design_review"
+    success_condition: "User feedback has been processed, documents updated if needed, and appropriate next action determined (proceed to next phase or loop back for re-review)"
+
+  - name: create_tasks_breakdown
+    description: Generate a detailed tasks.md with numbered, checkboxed implementation tasks
+    actions:
+      - "Create a comprehensive task breakdown based on the approved design and requirements"
+      - "Number each task clearly and include empty checkboxes [] for tracking"
+      - "Reference specific requirements by number to ensure full alignment"
+      - "Organize tasks to promote incremental value - basic functionality first, then detailed features"
+      - "Scale task complexity appropriately (2-5 tasks for simple plans, up to 25 for complex plans)"
+      - "Incorporate testing throughout the development process, not just at the end"
+      - "Ensure tasks are appropriately sized for AI agent implementation"
+      - "Save the document to ./specs/<plan_name>/tasks.md"
+    context:
+      read_keys:
+        - design_content
+        - requirements_content
+        - plan_name
+      write_keys:
+        - tasks_content
+        - tasks_file_path
+        - task_count
+    allowed_next_steps:
+      - present_tasks_review
+    continuation_logic: "After creating the task breakdown, proceed to present it for user review"
+    success_condition: "Task breakdown has been created with numbered, checkboxed tasks that reference requirements and promote incremental development"
+
+  - name: present_tasks_review
+    description: Present task breakdown to user and ask for review
+    actions:
+      - "Present the task breakdown to the user for review"
+      - "Ask for feedback on the task organization and completeness"
+      - "Do not handle feedback in this step - only present and ask for review"
+    user_prompt: |-
+      I've created your task breakdown. Please review:
+      
+      1. Do the tasks cover all requirements comprehensively?
+      2. Is the task organization logical and promoting incremental value?
+      3. Are the tasks appropriately sized for implementation?
+      4. Do you have any suggestions for improvements?
+      
+      Please provide your feedback or approval for this final review.
+    context:
+      read_keys:
+        - tasks_content
+        - tasks_file_path
+      write_keys:
+        - tasks_review_requested
+    allowed_next_steps:
+      - handle_tasks_feedback
+    continuation_logic: "After presenting tasks for review, proceed to handle user feedback"
+    success_condition: "Task breakdown has been presented and user feedback has been requested"
+
+  - name: handle_tasks_feedback
+    description: Process user feedback on tasks and update all documents if needed to ensure alignment
+    actions:
+      - "Analyze user feedback on the task breakdown"
+      - "If user approves, prepare for workflow completion"
+      - "If user provides feedback, update the tasks document accordingly"
+      - "If user feedback affects design or requirements, update those documents as well"
+      - "Ensure all three documents (requirements, design, tasks) remain fully aligned"
+      - "If changes were made, loop back to present the updated tasks for review"
+      - "Continue until user approves the complete specification"
+    context:
+      read_keys:
+        - tasks_content
+        - design_content
+        - requirements_content
+        - tasks_file_path
+        - design_file_path
+        - requirements_file_path
+        - tasks_review_requested
+      write_keys:
+        - tasks_approved
+        - user_tasks_feedback
+        - final_alignment_check
+        - tasks_updated
+    allowed_next_steps:
+      - present_tasks_review
+      - workflow_complete
+    continuation_logic: "If user approves tasks and all documents are aligned, proceed to workflow_complete. If changes were made, go back to present_tasks_review"
+    success_condition: "User feedback has been processed, all documents updated and aligned if needed, and appropriate next action determined (complete workflow or loop back for re-review)"
+
+  - name: workflow_complete
+    description: Confirm completion and provide summary of created specification documents
+    actions:
+      - "Congratulate the user on completing the specification process"
+      - "Provide a summary of the three created documents and their locations"
+      - "Remind the user that they now have a complete implementation plan ready for AI-assisted development"
+      - "Suggest next steps for beginning implementation using the task breakdown"
+    user_prompt: |-
+      🎉 Congratulations! Your specification is complete.
+      
+      I've created a comprehensive implementation plan with three aligned documents:
+      
+      1. **Requirements** (./specs/<plan_name>/requirements.md) - Numbered requirements list
+      2. **Design** (./specs/<plan_name>/design.md) - Architecture and implementation details  
+      3. **Tasks** (./specs/<plan_name>/tasks.md) - Implementation task breakdown
+      
+      You're now ready to begin implementation using these specifications with AI agents. 
+      Start with the first few tasks to build your basic functionality incrementally!
+    context:
+      read_keys:
+        - plan_name
+        - requirements_file_path
+        - design_file_path
+        - tasks_file_path
+        - task_count
+      write_keys:
+        - completion_summary
+    allowed_next_steps: []
+    continuation_logic: "This is the final step - workflow is complete"
+    success_condition: "User has been provided with completion summary and next steps"
