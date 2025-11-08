@@ -1,4 +1,4 @@
-name: Sync Collections to API
+name: Sync Collections to Production
 
 on:
   push:
@@ -53,35 +53,35 @@ jobs:
       - name: Fix git safe directory
         run: git config --global --add safe.directory $GITHUB_WORKSPACE
 
-      - name: Set sync commit variable
+      - name: Set production sync commit variable
         run: |
           if [ "${{ github.event.inputs.force_full_sync }}" = "true" ]; then
             echo "LAST_SYNC_COMMIT=" >> $GITHUB_ENV
             echo "Force full sync enabled - LAST_SYNC_COMMIT set to empty"
           else
-            echo "LAST_SYNC_COMMIT=${{ vars.LAST_SYNC_COMMIT }}" >> $GITHUB_ENV
-            echo "Incremental sync - LAST_SYNC_COMMIT set to: ${{ vars.LAST_SYNC_COMMIT }}"
+            echo "LAST_SYNC_COMMIT=${{ vars.PROD_LAST_SYNC_COMMIT }}" >> $GITHUB_ENV
+            echo "Incremental sync - LAST_SYNC_COMMIT set to: ${{ vars.PROD_LAST_SYNC_COMMIT }}"
           fi
 
-      - name: Sync collections to API
+      - name: Sync collections to Production API
         run: | 
           echo "current LAST_SYNC_COMMIT is: $LAST_SYNC_COMMIT"
-          echo "starting the sync-collections script"
+          echo "starting the sync-collections script for PRODUCTION"
           node /app/scripts/sync-collections.js
         env:
-          ADMIN_API_TOKEN: ${{ secrets.ADMIN_API_TOKEN }}
-          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+          ADMIN_API_TOKEN: ${{ secrets.PROD_ADMIN_API_TOKEN }}
+          API_BASE_URL: ${{ secrets.PROD_API_BASE_URL }}
           LAST_SYNC_COMMIT: ${{ env.LAST_SYNC_COMMIT }}
           DRY_RUN: ${{ github.event.inputs.dry_run }}
           COLLECTIONS_DIR: ${{ github.workspace }}/collections
 
-      - name: Update sync state
+      - name: Update production sync state
         if: success() && github.event.inputs.dry_run != 'true'
         run: |
           git config --global --add safe.directory $GITHUB_WORKSPACE
           CURRENT_COMMIT=$(git rev-parse HEAD)
-          echo "Updating LAST_SYNC_COMMIT to: $CURRENT_COMMIT"
-          gh variable set LAST_SYNC_COMMIT --body "$CURRENT_COMMIT"
+          echo "Updating PROD_LAST_SYNC_COMMIT to: $CURRENT_COMMIT"
+          gh variable set PROD_LAST_SYNC_COMMIT --body "$CURRENT_COMMIT"
         env:
           GH_TOKEN: ${{ secrets.PAT_TOKEN }}
 
