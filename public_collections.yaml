@@ -1,4 +1,10 @@
 collection_ids:
-- 1cac8a88-4a27-41d7-85e7-c0ac14870025
-- 15768452-a6da-44e0-b4fa-909bd7397533
-- abb60aa0-4df8-41f8-a745-9f6aec179b59
+- 44da30b7-5279-40c7-8d9c-eeb8f3a358ad  # Getting Started & Examples
+- 5c7873ed-fe23-46ef-846f-9122b449828f  # Documentation & Analysis
+- b9655cc4-39cd-47f0-a7c5-70c26c989caa  # Project Setup & Planning
+- eb561e71-3d3d-4d93-afb3-70a9538735ac  # Developer Tools
+- fb47ee6c-8716-4757-9b07-e828b20d2ca9  # Code Quality & Security
+
+# - 1cac8a88-4a27-41d7-85e7-c0ac14870025  # Engineering commons
+# - 15768452-a6da-44e0-b4fa-909bd7397533  # Playground in dev
+# - abb60aa0-4df8-41f8-a745-9f6aec179b59  # Engineering Quality
