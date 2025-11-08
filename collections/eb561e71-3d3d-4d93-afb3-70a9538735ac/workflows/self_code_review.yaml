@@ -1,0 +1,163 @@
+name: Self Code Review Assistant
+description: Interactive code review workflow that analyzes branch changes, provides detailed feedback with scoring, and helps developers improve code quality before peer review
+
+diagram: |
+  graph TD
+    Start([Start]) --> setup_and_choose_scope
+    setup_and_choose_scope[Setup & Choose Scope<br/>- Identify parent branch<br/>- Choose review scope<br/>- Ask developer goals] --> analyze_and_review
+    analyze_and_review[Analyze & Review<br/>- Git diff based on scope<br/>- Code review<br/>- Generate score] --> Decision{User Choice}
+    Decision -->|Apply Changes| apply_changes
+    Decision -->|Finish| finish_review
+    apply_changes[Apply Changes<br/>- Modify code<br/>- Explain fixes] --> analyze_and_review
+    finish_review[Finish Review<br/>- Summary<br/>- Final score] --> End([End])
+
+steps:
+  - name: setup_and_choose_scope
+    description: Identify parent branch, let user choose review scope, and gather developer's intent
+    actions:
+      - "Run git commands to identify the parent branch (check git log, git merge-base, etc.)"
+      - "Try common parent branches: main, master, develop"
+      - "Check if current branch exists on remote (git ls-remote)"
+      - "If unable to determine parent branch automatically, ask the user to specify it"
+      - "Store the identified parent branch for later use"
+      - "Explain that you'll be reviewing their changes"
+      - "Show the parent branch that will be used for comparison"
+      - "Present review scope options to the user:"
+      - "  1. Uncommitted changes only (default) - git --no-pager diff HEAD"
+      - "  2. Changes not pushed to remote - git --no-pager diff origin/current_branch..HEAD (if branch exists on remote)"
+      - "  3. All changes on current branch vs parent - git --no-pager diff parent_branch..HEAD + uncommitted"
+      - "Ask the user to select their preferred review scope"
+      - "Ask the developer to describe what they wanted to achieve with their changes"
+      - "Ask about the specific feature, bug fix, or improvement they were working on"
+    user_prompt: |-
+      I'll review your changes. Parent branch identified: {parent_branch}
+      
+      What would you like me to review?
+      1. **Uncommitted changes only** (default) - Changes not yet staged/committed
+      2. **Changes not pushed to remote** - All local commits not yet pushed
+      3. **All changes on current branch** - Everything compared to {parent_branch}
+      
+      Please select (1, 2, or 3) and describe:
+      - What did you want to achieve with these changes?
+      - What feature, bug fix, or improvement were you working on?
+    context:
+      read_keys: []
+      write_keys:
+        - parent_branch
+        - git_analysis_method
+        - review_scope
+        - developer_intent
+        - feature_description
+    success_condition: Parent branch identified, review scope selected, and developer has provided their intent and goals
+    allowed_next_steps:
+      - analyze_and_review
+    continuation_logic: After gathering review scope and developer intent, proceed to analyze and review selected changes
+
+  - name: analyze_and_review
+    description: Analyze selected scope of changes and generate comprehensive code review with scoring
+    actions:
+      - "Based on the selected review_scope, run the appropriate git diff command with --no-pager for full output:"
+      - "  - Scope 1 (uncommitted): git --no-pager diff HEAD"
+      - "  - Scope 2 (not pushed): git --no-pager diff origin/current_branch..HEAD (or git --no-pager diff @{u}..HEAD)"
+      - "  - Scope 3 (all changes): git --no-pager diff parent_branch..HEAD plus git --no-pager diff HEAD for uncommitted"
+      - "Read and analyze all modified files within the selected scope"
+      - "Identify the scope and nature of changes"
+      - "Look for patterns, potential issues, code smells, and areas of concern"
+      - "Consider the developer's stated intent when analyzing relevance"
+      - "Create a comprehensive review covering:"
+      - "  - Relevance: How well changes align with stated developer intent"
+      - "  - Code Quality: Identify bad smells, anti-patterns, potential bugs"
+      - "  - Best Practices: Highlight deviations from coding standards"
+      - "  - Performance: Note any performance concerns"
+      - "  - Security: Flag potential security issues"
+      - "  - Maintainability: Assess code readability and maintainability"
+      - "Calculate an overall score from 1-10 based on the analysis"
+      - "Provide specific, actionable recommendations for improvement"
+      - "Organize feedback by priority (critical, important, nice-to-have)"
+      - "Show what scope was reviewed (uncommitted/not pushed/all changes)"
+      - "Present the review to the user with clear sections and the score"
+      - "ALWAYS wait for user to explicitly choose their next action - never automatically proceed to finish_review"
+    user_prompt: |-
+      📊 Code Review Complete
+      
+      Review Scope: {review_scope_description}
+      
+      {review_content}
+      
+      Overall Score: {review_score}/10
+      
+      What would you like to do next?
+      1. **Apply recommended changes** - I'll fix the issues and re-review
+      2. **Make specific changes** - Tell me what to change
+      3. **Finish review** - End the review process
+      
+      Please choose 1, 2, or 3:
+    context:
+      read_keys:
+        - parent_branch
+        - review_scope
+        - developer_intent
+        - feature_description
+      write_keys:
+        - changes_analysis
+        - modified_files
+        - change_scope
+        - review_scope_description
+        - review_content
+        - review_score
+        - recommendations
+        - review_iteration
+    success_condition: Selected scope of changes analyzed, review presented, and user has explicitly chosen their next action
+    allowed_next_steps:
+      - apply_changes
+      - finish_review
+    continuation_logic: ONLY go to apply_changes if user explicitly chooses option 1 or 2. ONLY go to finish_review if user explicitly chooses option 3. Never automatically decide - always wait for user input.
+
+  - name: apply_changes
+    description: Apply recommended or user-requested changes to the code and automatically re-review
+    actions:
+      - "Based on user's choice, either apply recommended changes or specific user-requested changes"
+      - "Make the necessary code modifications"
+      - "Explain what was fixed and why"
+      - "Document the changes made in this iteration"
+      - "Increment the review iteration counter"
+      - "Inform the user that you will now re-analyze the code to verify the changes"
+    context:
+      read_keys:
+        - parent_branch
+        - review_scope
+        - developer_intent
+        - feature_description
+        - changes_analysis
+        - modified_files
+        - review_content
+        - review_score
+        - recommendations
+        - review_iteration
+      write_keys:
+        - applied_changes
+        - changes_explanation
+        - review_iteration
+    success_condition: Changes have been applied, explained to user, and ready to re-analyze
+    allowed_next_steps:
+      - analyze_and_review
+    continuation_logic: ALWAYS automatically proceed to analyze_and_review after applying changes. Do not ask user - just continue to re-analyze the code.
+
+  - name: finish_review
+    description: Complete the review process and provide summary
+    actions:
+      - "Summarize the review process"
+      - "Show the final score and key improvements made (if any)"
+      - "Provide encouragement and next steps"
+      - "Thank the developer for using the review assistant"
+    context:
+      read_keys:
+        - review_score
+        - review_iteration
+        - applied_changes
+        - recommendations
+      write_keys:
+        - final_summary
+    success_condition: Review process has been completed and summary provided
+    allowed_next_steps: []
+    continuation_logic: This is the final step - workflow ends here
