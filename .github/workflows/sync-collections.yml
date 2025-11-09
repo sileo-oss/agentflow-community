@@ -20,20 +20,27 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository_owner }}/agentflow-sync:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Need full history for git diff
 
-      - name: Install validation tools
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y jq
-          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
-          sudo chmod +x /usr/local/bin/yq
+      - name: Fix git safe directory
+        run: git config --global --add safe.directory $GITHUB_WORKSPACE
 
       - name: Validate collections
-        run: ./scripts/validate-collections.sh
+        run: node /app/scripts/validate-collections.js
+        env:
+          API_BASE_URL: ${{ secrets.PROD_API_BASE_URL }}
+          COLLECTIONS_DIR: ${{ github.workspace }}/collections
+          LAST_SYNC_COMMIT: ${{ vars.PROD_LAST_SYNC_COMMIT }}
 
   sync:
     runs-on: ubuntu-latest

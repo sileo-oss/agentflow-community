@@ -1,0 +1,58 @@
+name: Validate Collections
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths: 
+      - 'collections/**'
+      - 'public_collections.yaml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository_owner }}/agentflow-sync:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Need full history for git diff
+
+      - name: Fix git safe directory
+        run: git config --global --add safe.directory $GITHUB_WORKSPACE
+
+      - name: Validate collections
+        run: node /app/scripts/validate-collections.js
+        env:
+          API_BASE_URL: ${{ secrets.PROD_API_BASE_URL }}
+          COLLECTIONS_DIR: ${{ github.workspace }}/collections
+          LAST_SYNC_COMMIT: ${{ vars.PROD_LAST_SYNC_COMMIT }}
+
+      - name: Comment on PR - Success
+        if: success() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ Collection validation passed!\n\nAll collections have valid syntax, structure, and workflow logic. Ready to merge.'
+            })
+
+      - name: Comment on PR - Failure
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '❌ Collection validation failed!\n\nPlease check the workflow logs for details and fix the errors before merging.'
+            })
