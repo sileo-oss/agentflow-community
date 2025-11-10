@@ -4,7 +4,7 @@ diagram: |-
     graph TD
         start[Start: Initialize test] --> validate[Validate: Check system] --> complete[Complete: Finish test]
 steps:
-  - name: start
+  - name1: start
     description: Initialize the test workflow
     actions:
       - 'Acknowledge that the test workflow has started'
