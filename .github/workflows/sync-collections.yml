@@ -17,6 +17,10 @@ on:
         type: boolean
         default: false
 
+permissions:
+  contents: read
+  packages: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
