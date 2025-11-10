@@ -1,0 +1,5 @@
+{
+  "name": "test_prompt_one",
+  "description": "First test prompt for validation",
+  "content": "This is a test prompt. Please respond with 'Test prompt one executed successfully' to confirm the prompt system is working."
+}

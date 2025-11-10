@@ -1,0 +1,5 @@
+{
+  "name": "test_prompt_two",
+  "description": "Second test prompt for validation",
+  "content": "This is another test prompt. Please list three random programming languages and confirm with 'Test prompt two executed successfully'."
+}

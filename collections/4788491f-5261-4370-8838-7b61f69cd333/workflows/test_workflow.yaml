@@ -1,0 +1,47 @@
+name: Test Workflow
+description: A simple test workflow to validate workflow execution
+diagram: |-
+    graph TD
+        start[Start: Initialize test] --> validate[Validate: Check system] --> complete[Complete: Finish test]
+steps:
+  - name: start
+    description: Initialize the test workflow
+    actions:
+      - 'Acknowledge that the test workflow has started'
+      - 'Set test_status to "initialized"'
+    user_prompt: 'Test workflow starting. Press enter to continue.'
+    context:
+      read_keys: []
+      write_keys:
+        - test_status
+    allowed_next_steps:
+      - validate
+    continuation_logic: 'After initialization, proceed to validate step'
+    success_condition: 'Test status has been set to initialized'
+  - name: validate
+    description: Validate the system is working
+    actions:
+      - 'Check that test_status is "initialized"'
+      - 'Update test_status to "validated"'
+      - 'Report validation success'
+    context:
+      read_keys:
+        - test_status
+      write_keys:
+        - test_status
+    allowed_next_steps:
+      - complete
+    continuation_logic: 'After validation, proceed to complete step'
+    success_condition: 'Test status has been updated to validated'
+  - name: complete
+    description: Complete the test workflow
+    actions:
+      - 'Confirm test_status is "validated"'
+      - 'Report that the test workflow completed successfully'
+    context:
+      read_keys:
+        - test_status
+      write_keys: []
+    allowed_next_steps: []
+    continuation_logic: 'Workflow complete'
+    success_condition: 'Test workflow has completed successfully'
