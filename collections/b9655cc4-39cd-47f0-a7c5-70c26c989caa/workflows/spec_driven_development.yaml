@@ -1,5 +1,5 @@
 name: Spec Driven Development
-description: Systematic development of features from structured spec based tasks breakdown with validation, progress tracking, and review loop
+description: Systematic development of features from structured spec based tasks breakdown with validation, progress tracking, and review loop.
 diagram: |-
   flowchart TD
     Start([Start: Spec Driven Development]) --> A[request_task_details]
