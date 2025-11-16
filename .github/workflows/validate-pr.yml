@@ -30,7 +30,7 @@ jobs:
       - name: Validate collections
         run: node /app/scripts/validate-collections.js
         env:
-          API_BASE_URL: ${{ vars.PROD_API_BASE_URL }}
+          API_BASE_URL: https://agentflowhq.dev/api/v1
           COLLECTIONS_DIR: ${{ github.workspace }}/collections
           LAST_SYNC_COMMIT: ${{ vars.PROD_LAST_SYNC_COMMIT }}
 
