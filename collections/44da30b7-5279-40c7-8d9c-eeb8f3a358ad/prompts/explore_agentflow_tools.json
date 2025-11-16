@@ -1,5 +1,5 @@
 {
   "name": "explore_agentflow_tools",
-  "description": "Discover and understand AgentFlow-specific tools available to the agent",
-  "content": "Help me understand what AgentFlow-specific tools are available to you as an agent. Please focus ONLY on tools that are part of AgentFlow itself (like workflow execution, prompt management, context handling, etc.), not general MCP servers or external integrations.\n\nFor each AgentFlow tool, explain:\n1. What the tool does\n2. When I should use it\n3. A simple example of how it works\n\nKeep explanations concise and practical. This will help me understand AgentFlow's core capabilities."
+  "description": "Discover and understand MCP tools specific to AgentFlow that are available to the agent",
+  "content": "Help me understand what AgentFlow-specific tools are available to you as an agent. Please focus ONLY on tools that are part of AgentFlow itself (like workflow execution and validation, fetch and search, etc.), not general MCP servers or external integrations.\n\nFor each AgentFlow tool, explain:\n1. What the tool does\n2. When I should use it\n3. A simple example of how it works\n\nKeep explanations concise and practical. This will help me understand AgentFlow's core capabilities."
 }
