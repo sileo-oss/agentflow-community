@@ -10,24 +10,19 @@ on:
 
 permissions:
   contents: read
-  packages: read
   pull-requests: write
-  issues: write
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/${{ github.repository_owner }}/agentflow-sync:latest
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Need full history for git diff
+          fetch-depth: 0
 
       - name: Fix git safe directory
         run: git config --global --add safe.directory $GITHUB_WORKSPACE
@@ -35,7 +30,7 @@ jobs:
       - name: Validate collections
         run: node /app/scripts/validate-collections.js
         env:
-          API_BASE_URL: ${{ secrets.PROD_API_BASE_URL }}
+          API_BASE_URL: ${{ vars.PROD_API_BASE_URL }}
           COLLECTIONS_DIR: ${{ github.workspace }}/collections
           LAST_SYNC_COMMIT: ${{ vars.PROD_LAST_SYNC_COMMIT }}
 
@@ -48,7 +43,7 @@ jobs:
               issue_number: context.payload.pull_request.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '✅ Collection validation passed!\n\nAll collections have valid syntax, structure, and workflow logic. Ready to merge.'
+              body: '✅ Collection validation passed!\n\nAll collections have valid syntax, structure, and workflow logic. Ready for review.'
             })
 
       - name: Comment on PR - Failure
@@ -60,5 +55,5 @@ jobs:
               issue_number: context.payload.pull_request.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '❌ Collection validation failed!\n\nPlease check the workflow logs for details and fix the errors before merging.'
+              body: '❌ Collection validation failed!\n\nPlease check the workflow logs for details and fix the errors before this PR can be reviewed.'
             })
