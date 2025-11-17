@@ -1,0 +1,496 @@
+name: Plan and Implement Feature
+description: Help developers plan and implement features by breaking them down into manageable tasks
+
+diagram: |
+  graph TD
+    Start([Start Workflow]) --> check_existing_plans
+    check_existing_plans{Check Existing Plans} -->|Existing Plan| load_existing_plan
+    check_existing_plans -->|New Plan| gather_feature_requirements
+    
+    load_existing_plan[Load Existing Plan] --> validate_task_selection
+    
+    validate_task_selection{Validate Task} -->|Invalid| validate_task_selection
+    validate_task_selection -->|Valid| implement_task
+    
+    gather_feature_requirements[Gather Feature Requirements] --> analyze_project_context
+    analyze_project_context[Analyze Project Context] --> identify_clarifications
+    
+    identify_clarifications{Need Clarifications?} -->|Yes| ask_clarifying_questions
+    identify_clarifications -->|No| create_implementation_plan
+    
+    ask_clarifying_questions[Ask Clarifying Questions] --> evaluate_clarifications
+    evaluate_clarifications{Clarifications Clear?} -->|No| ask_clarifying_questions
+    evaluate_clarifications -->|Yes| create_implementation_plan
+    
+    create_implementation_plan[Create Implementation Plan] --> request_plan_review
+    request_plan_review{Review Plan} -->|Has Feedback| refine_plan
+    request_plan_review -->|Approved| ask_start_implementation
+    
+    refine_plan[Refine Plan] --> request_plan_review
+    
+    ask_start_implementation{Start Implementation?} -->|Yes| validate_task_selection
+    ask_start_implementation -->|No| finish_workflow
+    
+    implement_task[Implement Task] --> request_implementation_review
+    request_implementation_review{Review Implementation} -->|Has Feedback| fix_implementation
+    request_implementation_review -->|Approved| mark_task_complete
+    
+    fix_implementation[Fix Implementation] --> request_implementation_review
+    
+    mark_task_complete{Continue?} -->|Yes| validate_task_selection
+    mark_task_complete -->|No| finish_workflow
+    
+    finish_workflow([Finish Workflow])
+
+steps:
+  - name: check_existing_plans
+    description: Check for existing implementation plans and let user choose between new or existing plan
+    actions:
+      - "Check if the 'plans' directory exists in the workspace"
+      - "If plans directory exists, list all .md files in it"
+      - "If plans exist, present them to the user as numbered options"
+      - "Ask the user if they want to: 1) Create a new feature plan, or 2) Continue with an existing plan"
+      - "If no plans exist, inform the user and proceed directly to gathering new feature requirements"
+    user_prompt: |-
+      I found the following existing implementation plans:
+      [List plans here if any exist]
+      
+      Would you like to:
+      1. Create a new feature implementation plan
+      2. Continue working on an existing plan
+      
+      Please specify your choice.
+    context:
+      read_keys: []
+      write_keys:
+        - existing_plans_list
+        - user_choice_new_or_existing
+        - plans_directory_exists
+    success_condition: User has indicated whether they want to work on a new or existing plan
+    allowed_next_steps:
+      - load_existing_plan
+      - gather_feature_requirements
+    continuation_logic: If user chose existing plan, go to load_existing_plan. If user chose new plan or no plans exist, go to gather_feature_requirements
+
+  - name: load_existing_plan
+    description: Load the selected existing plan and show available tasks
+    actions:
+      - "Read the selected plan file from the plans directory"
+      - "Parse the plan to identify all tasks (lines starting with [ ] or [x])"
+      - "Create a list of incomplete tasks (those with [ ])"
+      - "Display the plan overview and list incomplete tasks with their numbers"
+      - "Ask the user which task or phase they want to work on"
+    user_prompt: |-
+      Here's the current plan status:
+      
+      [Display plan content]
+      
+      Incomplete tasks:
+      [List numbered incomplete tasks]
+      
+      Which task would you like to work on? Please provide the task number.
+    context:
+      read_keys:
+        - existing_plans_list
+        - user_choice_new_or_existing
+      write_keys:
+        - selected_plan_path
+        - plan_content
+        - incomplete_tasks_list
+        - selected_task_number
+    success_condition: User has selected a task number to work on
+    allowed_next_steps:
+      - validate_task_selection
+    continuation_logic: After user provides task number, proceed to validate_task_selection
+
+  - name: validate_task_selection
+    description: Validate that the selected task exists and is incomplete, then proceed to implementation or re-ask
+    actions:
+      - "Check if the provided task number exists in the plan"
+      - "Check if the task is incomplete (has [ ] not [x])"
+      - "If task is valid and incomplete, extract the task details and prepare for implementation"
+      - "If task is invalid or already complete, explain the issue and list the available incomplete tasks again, then ask user to provide a valid task number"
+    user_prompt: |-
+      [Only show if task is invalid:]
+      The task number you provided is not valid or is already complete.
+      
+      Available incomplete tasks:
+      [List incomplete tasks]
+      
+      Please provide a valid task number.
+    context:
+      read_keys:
+        - plan_content
+        - incomplete_tasks_list
+        - selected_task_number
+      write_keys:
+        - task_validation_result
+        - selected_task_details
+    success_condition: Valid task has been selected and details extracted
+    allowed_next_steps:
+      - validate_task_selection
+      - implement_task
+    continuation_logic: If task is invalid, loop back to validate_task_selection to ask again. If valid, proceed to implement_task
+
+  - name: gather_feature_requirements
+    description: Collect detailed information about the new feature from the user
+    actions:
+      - "Ask the user to explain the new functionality they want to implement"
+      - "Listen to the user's explanation and take note of all details"
+      - "Wait for the user to provide their feature description"
+    user_prompt: |-
+      Please explain the new functionality you want to implement. Include as much detail as possible about:
+      - What the feature should do
+      - How it should work
+      - Any specific requirements or constraints
+      - Expected user interactions or workflows
+    context:
+      read_keys:
+        - user_choice_new_or_existing
+      write_keys:
+        - feature_description
+        - user_initial_explanation
+    success_condition: User has provided initial feature description
+    allowed_next_steps:
+      - analyze_project_context
+    continuation_logic: After receiving feature description, proceed to analyze_project_context
+
+  - name: analyze_project_context
+    description: Learn about the project structure and understand how the feature fits
+    actions:
+      - "Examine the project structure to understand the codebase organization"
+      - "Identify relevant files, directories, and patterns related to the requested feature"
+      - "Analyze existing code to understand architectural patterns and conventions"
+      - "Determine how the new feature would integrate with existing functionality"
+      - "Identify any potential conflicts or dependencies"
+    context:
+      read_keys:
+        - feature_description
+        - user_initial_explanation
+      write_keys:
+        - project_structure_analysis
+        - relevant_files_identified
+        - integration_points
+        - potential_conflicts
+    success_condition: Project context has been analyzed and integration points identified
+    allowed_next_steps:
+      - identify_clarifications
+    continuation_logic: After analyzing project context, proceed to identify_clarifications
+
+  - name: identify_clarifications
+    description: Identify ambiguities and inconsistencies that need clarification
+    actions:
+      - "Review the feature description against the project analysis"
+      - "Identify any ambiguities in the user's explanation"
+      - "Identify any inconsistencies with how the project currently works"
+      - "Identify any missing details needed for implementation"
+      - "Formulate specific clarifying questions"
+      - "If no clarifications needed, note that everything is clear"
+    context:
+      read_keys:
+        - feature_description
+        - user_initial_explanation
+        - project_structure_analysis
+        - relevant_files_identified
+        - integration_points
+      write_keys:
+        - clarification_questions_list
+        - ambiguities_identified
+        - inconsistencies_found
+    success_condition: Clarification needs have been identified
+    allowed_next_steps:
+      - ask_clarifying_questions
+      - create_implementation_plan
+    continuation_logic: If clarifications are needed, go to ask_clarifying_questions. If everything is clear, proceed to create_implementation_plan
+
+  - name: ask_clarifying_questions
+    description: Ask the user clarifying questions to resolve ambiguities
+    actions:
+      - "Present the clarifying questions to the user in a clear, organized manner"
+      - "Explain why each clarification is needed"
+      - "Wait for user responses"
+    user_prompt: |-
+      I need some clarifications to ensure I understand the feature correctly:
+      
+      [List clarifying questions with context]
+      
+      Please provide answers to help me create an accurate implementation plan.
+    context:
+      read_keys:
+        - clarification_questions_list
+        - ambiguities_identified
+        - inconsistencies_found
+      write_keys:
+        - user_clarification_responses
+        - clarification_round_number
+    success_condition: User has provided responses to clarifying questions
+    allowed_next_steps:
+      - evaluate_clarifications
+    continuation_logic: After receiving user responses, proceed to evaluate_clarifications
+
+  - name: evaluate_clarifications
+    description: Evaluate if the clarifications resolved all ambiguities
+    actions:
+      - "Review the user's clarification responses"
+      - "Check if all ambiguities have been resolved"
+      - "Identify any remaining unclear points or new ambiguities introduced"
+      - "Determine if additional clarification is needed"
+    context:
+      read_keys:
+        - user_clarification_responses
+        - clarification_questions_list
+        - clarification_round_number
+      write_keys:
+        - clarifications_sufficient
+        - remaining_ambiguities
+    success_condition: Clarification responses have been evaluated
+    allowed_next_steps:
+      - ask_clarifying_questions
+      - create_implementation_plan
+    continuation_logic: If ambiguities remain, return to ask_clarifying_questions with new questions. If everything is clear, proceed to create_implementation_plan
+
+  - name: create_implementation_plan
+    description: Create a detailed implementation plan with phases and tasks
+    actions:
+      - "Review all gathered information about the feature and project"
+      - "Determine if the feature is complex enough to require multiple phases"
+      - "Break down the implementation into logical phases (if complex) or tasks (if simple)"
+      - "For each phase, define specific numbered tasks"
+      - "Ensure each task is clear, actionable, and appropriately sized"
+      - "Format the plan with checkboxes [ ] before each task"
+      - "Include task descriptions that are detailed enough for implementation"
+      - "Generate a feature name slug for the filename (lowercase, hyphens)"
+      - "Create the plans directory if it doesn't exist"
+      - "Write the plan to plans/<feature-name>.md"
+    context:
+      read_keys:
+        - feature_description
+        - user_initial_explanation
+        - project_structure_analysis
+        - user_clarification_responses
+        - clarifications_sufficient
+      write_keys:
+        - implementation_plan
+        - plan_file_path
+        - feature_name_slug
+        - plan_phases
+        - plan_tasks
+    success_condition: Implementation plan has been created and written to file
+    allowed_next_steps:
+      - request_plan_review
+    continuation_logic: After creating the plan, proceed to request_plan_review
+
+  - name: request_plan_review
+    description: Present the plan to the user for review and approval
+    actions:
+      - "Display the complete implementation plan to the user"
+      - "Ask the user to review the plan"
+      - "Ask if they approve the plan or have feedback for refinement"
+    user_prompt: |-
+      I've created an implementation plan for your feature. Here it is:
+      
+      [Display plan content]
+      
+      Please review the plan. Do you:
+      1. Approve the plan and want to start implementation
+      2. Have feedback or changes you'd like me to make
+      
+      Please let me know your decision.
+    context:
+      read_keys:
+        - implementation_plan
+        - plan_file_path
+      write_keys:
+        - plan_approval_status
+        - plan_feedback
+    success_condition: User has reviewed the plan and provided their decision
+    allowed_next_steps:
+      - refine_plan
+      - ask_start_implementation
+    continuation_logic: If user has feedback, go to refine_plan. If user approves, go to ask_start_implementation
+
+  - name: refine_plan
+    description: Refine the implementation plan based on user feedback
+    actions:
+      - "Review the user's feedback on the plan"
+      - "Identify what changes are needed"
+      - "Update the implementation plan accordingly"
+      - "Rewrite the plan file with the refinements"
+      - "Ensure all tasks still have checkboxes and proper formatting"
+    context:
+      read_keys:
+        - implementation_plan
+        - plan_file_path
+        - plan_feedback
+      write_keys:
+        - implementation_plan
+        - refinement_changes_made
+    success_condition: Plan has been refined based on feedback
+    allowed_next_steps:
+      - request_plan_review
+    continuation_logic: After refining the plan, return to request_plan_review to show the updated plan
+
+  - name: ask_start_implementation
+    description: Ask the user if they want to start working on the plan
+    actions:
+      - "Read the plan file to get current plan content and parse tasks"
+      - "Create a list of incomplete tasks from the plan"
+      - "Confirm the plan is approved"
+      - "Ask the user if they want to start implementation now"
+      - "If yes, ask which task or phase they want to start with"
+    user_prompt: |-
+      Great! The plan is approved. Would you like to start working on it now?
+      
+      If yes, please specify which task or phase you'd like to start with (provide the task number).
+    context:
+      read_keys:
+        - plan_approval_status
+        - implementation_plan
+        - plan_file_path
+      write_keys:
+        - start_implementation_decision
+        - selected_task_number
+        - plan_content
+        - incomplete_tasks_list
+    success_condition: User has decided whether to start implementation and selected a task if yes
+    allowed_next_steps:
+      - validate_task_selection
+      - finish_workflow
+    continuation_logic: If user wants to start, go to validate_task_selection with their chosen task. If user doesn't want to start now, go to finish_workflow
+
+  - name: implement_task
+    description: Implement the selected task from the plan
+    actions:
+      - "Review the task details and requirements"
+      - "Examine relevant code files identified during analysis"
+      - "Implement the changes needed to complete the task"
+      - "Ensure code follows project conventions and patterns"
+      - "Make all necessary file changes"
+      - "Provide a summary of what was implemented"
+    context:
+      read_keys:
+        - selected_task_details
+        - plan_content
+        - project_structure_analysis
+        - relevant_files_identified
+      write_keys:
+        - implementation_summary
+        - files_changed
+    success_condition: Task implementation is complete
+    allowed_next_steps:
+      - request_implementation_review
+    continuation_logic: After completing implementation, proceed to request_implementation_review
+
+  - name: request_implementation_review
+    description: Ask the user to review the implementation
+    actions:
+      - "Summarize the changes made during implementation"
+      - "Highlight key files that were modified or created"
+      - "Ask the user to review the changes"
+      - "Ask if they approve the implementation or have feedback"
+    user_prompt: |-
+      I've completed the implementation. Here's what I did:
+      
+      [Implementation summary]
+      
+      Files changed:
+      [List of modified files]
+      
+      Please review the changes. Do you:
+      1. Approve the implementation
+      2. Have feedback or changes you'd like me to make
+      
+      Please let me know.
+    context:
+      read_keys:
+        - implementation_summary
+        - files_changed
+        - selected_task_details
+      write_keys:
+        - implementation_approval_status
+        - implementation_feedback
+    success_condition: User has reviewed the implementation and provided feedback
+    allowed_next_steps:
+      - fix_implementation
+      - mark_task_complete
+    continuation_logic: If user has feedback, go to fix_implementation. If user approves, go to mark_task_complete
+
+  - name: fix_implementation
+    description: Fix the implementation based on user feedback
+    actions:
+      - "Review the user's feedback on the implementation"
+      - "Identify what changes are needed"
+      - "Make the necessary corrections and improvements"
+      - "Ensure all feedback points are addressed"
+    context:
+      read_keys:
+        - implementation_feedback
+        - selected_task_details
+        - files_changed
+      write_keys:
+        - implementation_fixes_made
+        - updated_implementation_summary
+    success_condition: Implementation has been fixed based on feedback
+    allowed_next_steps:
+      - request_implementation_review
+    continuation_logic: After fixing implementation, return to request_implementation_review to ask for review again
+
+  - name: mark_task_complete
+    description: Mark the completed task in the plan and ask about next steps
+    actions:
+      - "Read the current plan file"
+      - "Find the completed task in the plan"
+      - "Update the checkbox from [ ] to [x] for the completed task"
+      - "Write the updated plan back to the file"
+      - "Check if there are remaining incomplete tasks"
+      - "If incomplete tasks remain, list them for the user"
+      - "Ask if the user wants to continue with another task"
+    user_prompt: |-
+      Great! I've marked the task as complete in the plan.
+      
+      [If incomplete tasks remain:]
+      Remaining tasks:
+      [List incomplete tasks]
+      
+      Would you like to continue with another task? If yes, please provide the task number.
+      If no, we can finish here.
+    context:
+      read_keys:
+        - selected_task_details
+        - plan_file_path
+        - plan_content
+      write_keys:
+        - plan_content
+        - incomplete_tasks_list
+        - selected_task_number
+        - continue_decision
+    success_condition: Task has been marked complete and user has decided on next steps
+    allowed_next_steps:
+      - validate_task_selection
+      - finish_workflow
+    continuation_logic: If user wants to continue with another task, go to validate_task_selection. If user wants to finish or all tasks are complete, go to finish_workflow
+
+  - name: finish_workflow
+    description: Complete the workflow and provide final summary
+    actions:
+      - "Provide a summary of what was accomplished"
+      - "If a plan was created, mention its location"
+      - "If tasks were completed, list them"
+      - "Thank the user and let them know they can return to continue later"
+    user_prompt: |-
+      Workflow complete! Here's what we accomplished:
+      
+      [Summary of work done]
+      
+      You can return to this workflow anytime to continue working on your implementation plan.
+    context:
+      read_keys:
+        - plan_file_path
+        - implementation_plan
+        - plan_content
+        - selected_task_details
+      write_keys:
+        - workflow_summary
+    success_condition: Workflow has been completed
+    allowed_next_steps: []
+    continuation_logic: This is the final step

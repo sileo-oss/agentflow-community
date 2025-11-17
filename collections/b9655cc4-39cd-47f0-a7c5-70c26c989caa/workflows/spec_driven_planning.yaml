@@ -1,5 +1,5 @@
 name: Spec Driven Planning
-description: Break down complex programming work into manageable tasks by creating detailed specifications. Guides developers through creating requirements, design, and task breakdown documents for streamlined AI-assisted development.
+description: Break down complex plans into manageable tasks by creating detailed specifications, ideal for new projects. Guides developers through creating requirements, design, and task breakdown documents for streamlined AI-assisted development.
 diagram: |-
   flowchart TD
     Start([Start: Spec Driven Planning]) --> A[gather_initial_requirements]
