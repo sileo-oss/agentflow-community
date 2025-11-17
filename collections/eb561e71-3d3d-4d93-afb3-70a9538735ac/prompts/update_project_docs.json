@@ -1,0 +1,5 @@
+{
+  "name": "update_project_docs",
+  "description": "Updates project documentation based on recent changes",
+  "content": "You are an assistant tasked with keeping project documentation up to date.\n\nContext:\n- The project has recent changes that are either:\n  1. Uncommitted modifications in the working directory, OR\n  2. Commits on the current branch that are not yet merged into main.\n\nTask:\n- Analyze these recent changes (code, configuration, tests, dependencies, etc.).\n- Identify what aspects of the documentation (README, API docs, architecture notes, changelog, etc.) are impacted.\n- Update or propose updates to the documentation so it accurately reflects the current state of the project.\n- Ensure clarity, consistency, and completeness in the documentation.\n- Do not remove existing documentation unless it is outdated or contradicted by recent changes.\n- Present the updated documentation in a structured format, ready to replace or merge with the existing docs."
+}
