@@ -7,10 +7,10 @@ Community-maintained collections of prompts and workflows for the AgentFlow MCP 
 This repository contains AI prompts and workflows that are automatically synced to [agentflowhq.dev](https://agentflowhq.dev). 
 
 **How it works:**
-- Collections are managed in this Git repository (version control, collaboration)
-- Changes are automatically deployed to [agentflowhq.dev](https://agentflowhq.dev)
-- Users can create and test collections on the web console, then submit them here
-- All collections are available through the AgentFlow MCP system
+- Collections are safely maintained in this Git repository with full version control and collaboration support
+- Changes merged to main are automatically synced to [agentflowhq.dev](https://agentflowhq.dev)
+- Users create and test collections on the web console, then submit them here via pull requests
+- All collections become available through the AgentFlow MCP system
 
 **Repository Structure:**
 ```
@@ -25,6 +25,35 @@ This repository contains AI prompts and workflows that are automatically synced 
 └── .github/workflows/              # Automated CI/CD workflows
     ├── validate-pr.yml             # Validates collections on PR
     └── sync-collections.yml        # Validates and syncs to production on merge
+```
+
+## File Formats
+
+### metadata.json
+Each collection must have a `metadata.json` file:
+```json
+{
+  "name": "Your Collection Name",
+  "description": "A brief description of what this collection does"
+}
+```
+
+### Prompt Files (prompts/*.json)
+Prompts are exported from the web console when you export your collection. Each prompt file contains the name, description, and prompt content.
+
+**Note:** Create and validate prompts using the web console, then export the collection.
+
+### Workflow Files (workflows/*.yaml)
+Workflows are YAML files that define multi-step agent processes.
+
+**Important:** Use the workflow definition helper through the AgentFlow MCP server to generate YAML definitions. Copy the YAML to the web console to create and test your workflow, then export it for Git. Manual editing is not recommended due to strict validation requirements.
+
+### public_collections.yaml
+To make a collection publicly discoverable, add its UUID:
+```yaml
+public_collections:
+  - "550e8400-e29b-41d4-a716-446655440000"  # Example UUID
+  - "your-collection-uuid-here"
 ```
 
 ## How to Contribute
@@ -63,7 +92,7 @@ When you create a PR:
 1. ✅ **Automatic validation** runs (checks syntax, structure, and workflow logic)
 2. 🤖 **Bot comments** on your PR with validation results
 3. 👤 **Owner reviews and approves** your PR
-4. � **OMerge to production** - After merge, your collection is validated again and synced live!
+4. � **Merge to production** - After merge, your collection is validated again and synced live!
 
 ## Guidelines
 
@@ -107,4 +136,4 @@ ODbL License - See LICENSE file for details.
 
 - **Issues**: Report bugs or request features via [GitHub Issues](../../issues)
 - **Discussions**: Ask questions in [GitHub Discussions](../../discussions)
-- **Documentation**: [AgentFlow Documentation](https://docs.agentflowhq.dev)
+- **Web Console**: [AgentFlow Web Console](https://agentflowhq.dev)
