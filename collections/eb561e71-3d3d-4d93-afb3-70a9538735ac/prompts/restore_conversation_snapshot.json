@@ -1,0 +1,5 @@
+{
+  "name": "restore_conversation_snapshot",
+  "description": "Instructs the AI agent to read a previously stored file conversation_snapshot.md, repopulate the context window with the essential details (overview, key points, pending tasks, next steps), and then remove the file to avoid duplication",
+  "content": "You are tasked with resuming a conversation from a previously stored snapshot.  \n\nInstructions:\n1. Read the file named: conversation_snapshot.md.\n2. Extract and repopulate the context window with:\n   - Conversation Overview\n   - Key Points & Decisions\n   - Pending Questions/Tasks\n   - Suggested Next Steps\n\n3. Remove the file after loading:\n   - Delete conversation_snapshot.md once the context has been restored.\n   - Confirm that the conversation can now continue seamlessly from the restored point."
+}
