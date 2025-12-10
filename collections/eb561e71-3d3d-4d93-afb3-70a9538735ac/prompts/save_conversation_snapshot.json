@@ -1,0 +1,5 @@
+{
+  "name": "save_conversation_snapshot",
+  "description": "Instructs the AI agent to capture the essence of the current conversation, summarize key points, decisions, and pending tasks, and save them in a structured Markdown file named conversation_snapshot.md",
+  "content": "You are tasked with creating a snapshot of the current conversation so it can be resumed later.  \n\nInstructions:\n1. Summarize the conversation:\n   - Capture main topics, decisions, insights, and pending tasks.\n   - Keep it concise but detailed enough to restore context.\n\n2. Create a structured snapshot:\n   - Format as Markdown with sections:\n     - Conversation Overview\n     - Key Points & Decisions\n     - Pending Questions/Tasks\n     - Suggested Next Steps\n\n3. Save the snapshot:\n   - Store it in a file named: conversation_snapshot.md\n   - Ensure the file is self-contained and can be used to continue current conversation without the original chat."
+}
