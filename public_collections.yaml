@@ -1,7 +1,9 @@
+# list of public collections searchable by name and description
 collection_ids:
-- 44da30b7-5279-40c7-8d9c-eeb8f3a358ad  # Getting Started & Examples
 - 5c7873ed-fe23-46ef-846f-9122b449828f  # Documentation & Analysis
 - b9655cc4-39cd-47f0-a7c5-70c26c989caa  # Project Setup & Planning
 - eb561e71-3d3d-4d93-afb3-70a9538735ac  # Developer Tools
 - fb47ee6c-8716-4757-9b07-e828b20d2ca9  # Code Quality & Security
 - d66aeb38-9866-4478-94b7-efb464ae38ef  # Development agent-skills
+- f58e5cef-f437-46bd-aaca-fdf12f60f089  # Spec driven development
+- 9ab4a1b2-f0ab-4a6c-899b-bf4335144d46  # Chat assistants
