@@ -1,0 +1,4 @@
+{
+  "name": "Build Tools",
+  "description": "Build system optimization and monorepo management including Bazel configuration, remote execution, caching strategies, NX workspace patterns, and Turborepo optimization for large-scale codebases."
+}

@@ -1,10 +1,10 @@
 # AgentFlow Collections
 
-Community-maintained collections of prompts and workflows for the AgentFlow MCP system.
+Community-maintained collections of prompts, workflows, and skills for the AgentFlow MCP system.
 
 ## What is this?
 
-This repository contains AI prompts and workflows that are automatically synced to [agentflowhq.dev](https://agentflowhq.dev). 
+This repository contains AI prompts, workflows, and skills that are automatically synced to [agentflowhq.dev](https://agentflowhq.dev).
 
 **How it works:**
 - Collections are safely maintained in this Git repository with full version control and collaboration support
@@ -19,8 +19,11 @@ This repository contains AI prompts and workflows that are automatically synced 
 │       ├── metadata.json           # Collection name and description
 │       ├── prompts/                # Prompts directory
 │       │   └── *.json              # Individual prompt files
-│       └── workflows/              # Workflows directory
-│           └── *.yaml              # Individual workflow files
+│       ├── workflows/              # Workflows directory
+│       │   └── *.yaml              # Individual workflow files
+│       └── skills/                 # Skills directory
+│           └── <skill-name>/       # Individual skill folder
+│               └── SKILL.md         # Skill instructions
 ├── public_collections.yaml         # Controls which collections are public
 └── .github/workflows/              # Automated CI/CD workflows
     ├── validate-pr.yml             # Validates collections on PR
@@ -47,6 +50,25 @@ Prompts are exported from the web console when you export your collection. Each 
 Workflows are YAML files that define multi-step agent processes.
 
 **Important:** Use the workflow definition helper through the AgentFlow MCP server to generate YAML definitions. Copy the YAML to the web console to create and test your workflow, then export it for Git. Manual editing is not recommended due to strict validation requirements.
+
+### Skill Files (skills/*/SKILL.md)
+Skills are markdown files with YAML frontmatter that provide specialized instructions and knowledge for AI agents.
+
+```markdown
+---
+name: skill-name
+description: Brief description of what this skill does
+---
+
+# Skill Name
+
+Your skill content here...
+```
+
+Each skill folder can also include:
+- `references/` - Documentation files for reference materials
+- `scripts/` - Executable scripts
+- `assets/` - Templates and static resources
 
 ### public_collections.yaml
 To make a collection publicly discoverable, add its UUID:
@@ -96,11 +118,12 @@ When you create a PR:
 
 ## Guidelines
 
-- **Use descriptive names** for collections, prompts, and workflows
+- **Use descriptive names** for collections, prompts, workflows, and skills
 - **Test your content** before submitting (use the web console!)
 - **Use snake_case** for file names (e.g., `my_prompt.json`)
 - **No sensitive data** - Never include API keys, passwords, or personal information
 - **Keep it focused** - Each collection should have a clear theme or purpose
+- **Skills are MIT licensed** - Some collections include skills from [agent-skills](https://github.com/wshobson/agents) which are MIT licensed
 
 ## Collection Visibility & Management
 
@@ -126,7 +149,10 @@ You can make your own collections public without adding them to this repo:
 - Locking is recommended before making a collection public
 - You can make collections public/private by adding/removing from `public_collections.yaml`
 
----
+## Licensing & Attribution
+
+- Third-party content must include license files in `LICENSES/`.
+- `public_collections.yaml` serves as the attribution registry for all collections.
 
 ## License
 

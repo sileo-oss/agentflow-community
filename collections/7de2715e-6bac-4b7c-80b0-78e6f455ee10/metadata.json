@@ -1,0 +1,4 @@
+{
+  "name": "Infrastructure Security",
+  "description": "Infrastructure security practices including mutual TLS for zero-trust networking, secrets management, certificate rotation, and service mesh security patterns for secure internal communication."
+}

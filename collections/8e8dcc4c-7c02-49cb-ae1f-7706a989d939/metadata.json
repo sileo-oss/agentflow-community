@@ -1,0 +1,4 @@
+{
+  "name": "Queues Workflows",
+  "description": "Workflow orchestration and message queuing including Temporal workflows, Airflow DAG patterns, event store design, and distributed systems coordination for reliable long-running processes and microservices."
+}

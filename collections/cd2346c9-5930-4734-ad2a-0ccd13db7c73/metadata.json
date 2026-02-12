@@ -1,0 +1,4 @@
+{
+  "name": "Data Engineering",
+  "description": "Data engineering including dbt transformations, SQL optimization, Spark optimization, data quality frameworks, database migrations, and data storytelling for building reliable data pipelines."
+}

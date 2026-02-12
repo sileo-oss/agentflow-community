@@ -1,0 +1,4 @@
+{
+  "name": "Monitoring",
+  "description": "Observability and monitoring including distributed tracing, Prometheus configuration, Grafana dashboards, service mesh observability, and SLO implementation for reliable system monitoring."
+}

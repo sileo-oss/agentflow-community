@@ -7,3 +7,31 @@ collection_ids:
 - d66aeb38-9866-4478-94b7-efb464ae38ef  # Development agent-skills
 - f58e5cef-f437-46bd-aaca-fdf12f60f089  # Spec driven development
 - 9ab4a1b2-f0ab-4a6c-899b-bf4335144d46  # Chat assistants
+
+# MIT licensed agent-skills based on https://github.com/wshobson/agents
+- 53a49855-7125-436a-ac9b-962b3e37e3f4  # Ai Ml
+- 4f450d0f-0a72-47a5-8ec8-fc8fefd469ae  # Api Design
+- c14aa59b-0ca7-4c7c-9e2a-22062142ed63  # Backend Frameworks
+- 096b2cc0-9fba-4c22-b7d6-510c360e28f6  # Build Tools
+- ac0440a3-894a-4b34-b0b8-23ad3d6374ea  # Business
+- 93877515-d724-4a6e-8544-700e7c5bf4cf  # Ci Cd
+- 20d25ca6-9c98-4e57-88bd-53db174e3b20  # Code Review
+- cd2346c9-5930-4734-ad2a-0ccd13db7c73  # Data Engineering
+- b2fa04a5-31c9-48c0-8f51-697a98fcb0bc  # Git Workflows
+- 733023e6-ae51-4329-b167-323f36bd584e  # Infrastructure
+- 7de2715e-6bac-4b7c-80b0-78e6f455ee10  # Infrastructure Security
+- 1297fac6-5655-4a33-8af3-fc798e5de30a  # Javascript
+- b21b8c6c-8662-4097-a97e-d68c3d7e6bcf  # Kubernetes
+- 94c314f8-357d-4bd3-b57e-9c54814980d0  # Mobile
+- aff40f3e-86dc-4831-acd8-d0cda2c530b9  # Monitoring
+- d456c6dc-bb14-4d54-90b4-5357e26d92d0  # Other
+- 83d6f67a-0478-4256-9706-2ea37ffab8dd  # Patterns
+- e6eeef5f-1c2e-49bc-9f69-9935141faa01  # Python
+- 8e8dcc4c-7c02-49cb-ae1f-7706a989d939  # Queues Workflows
+- df257664-dbc4-44da-a4be-8c3072c7d63c  # React
+- fcb4f90c-583a-437f-bb2d-38018d13c556  # Runbooks
+- b427ced6-24ca-4c1e-847d-4fccabbddc67  # Security Compliance
+- 358ec9f9-22a3-4b40-b605-4099f9af0f86  # Team Dynamics
+- 48b66322-552b-44cf-a9c6-88f85ffd7cf7  # Terraform
+- a69b8bc3-4822-48ee-a9c8-fe1266a2c1bb  # Testing
+- a3ff4429-f841-4bad-a022-df013f1a27d6  # Web Design

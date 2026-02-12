@@ -1,0 +1,4 @@
+{
+  "name": "Terraform",
+  "description": "Terraform infrastructure-as-code including reusable module development for AWS, Azure, and GCP, cloud provisioning standards, and multi-cloud compatible infrastructure components."
+}

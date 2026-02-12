@@ -1,0 +1,4 @@
+{
+  "name": "Python",
+  "description": "Python development practices including async patterns, design principles, error handling, observability, testing, type safety, performance optimization, configuration management, resilience patterns, background jobs, and packaging for maintainable Python applications."
+}

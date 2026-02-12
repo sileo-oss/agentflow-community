@@ -8,13 +8,18 @@
     - `prompts/`: Directory for individual prompts.
     - `workflows/`: Directory for workflow definitions.
     - `skills/`: Directory for specialized skills and knowledge.
-- `public_collections.yaml`: Registry of public collection UUIDs.
+- `public_collections.yaml`: Registry of public collection UUIDs with attribution.
+- `LICENSES/`: License files for third-party content.
 
 ## Contributing Content
 1. **Create & Test**: Use [agentflowhq.dev](https://agentflowhq.dev) to build and test content.
 2. **Export**: Export collection as ZIP from the UI.
 3. **Add**: Unzip into `collections/` (folder name must be UUID).
-4. **Register**: Add UUID to `public_collections.yaml` for visibility.
+4. **Register**: Add UUID to `public_collections.yaml` for visibility and attribution.
+
+## Licensing & Attribution
+- Third-party content must include license files in `LICENSES/`.
+- `public_collections.yaml` serves as the attribution registry for all collections.
 
 ## Validation
 - **CI**: Automated validation on PR (syntax, structure).

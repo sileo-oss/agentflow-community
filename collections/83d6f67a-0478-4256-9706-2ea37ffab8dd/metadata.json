@@ -1,0 +1,4 @@
+{
+  "name": "Patterns",
+  "description": "Software architecture and design patterns including Clean Architecture, Hexagonal Architecture, DDD, CQRS, microservices, saga orchestration, event sourcing, authentication patterns, error handling, architecture decision records, and parallel development workflows."
+}

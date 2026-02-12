@@ -1,0 +1,4 @@
+{
+  "name": "Api Design",
+  "description": "REST and GraphQL API design principles, patterns, and best practices including resource-oriented architecture, HTTP method semantics, schema-first development, and OpenAPI 3.1 specification generation, validation, and documentation workflows."
+}

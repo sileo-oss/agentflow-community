@@ -1,0 +1,4 @@
+{
+  "name": "Kubernetes",
+  "description": "Kubernetes operations including Helm chart development, Istio traffic management, Linkerd service mesh, K8s manifest generation, and security policies for cloud-native deployments."
+}
