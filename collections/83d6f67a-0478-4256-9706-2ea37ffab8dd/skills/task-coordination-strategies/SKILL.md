@@ -1,6 +1,8 @@
 ---
 name: task-coordination-strategies
 description: Decompose complex tasks, design dependency graphs, and coordinate multi-agent work with proper task descriptions and workload balancing. Use this skill when breaking down work for agent teams, managing task dependencies, or monitoring team progress.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/agent-teams/skills/task-coordination-strategies
 version: 1.0.2
 ---
 

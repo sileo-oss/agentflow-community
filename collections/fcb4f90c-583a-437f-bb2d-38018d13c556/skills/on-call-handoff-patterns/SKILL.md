@@ -1,6 +1,8 @@
 ---
 name: on-call-handoff-patterns
 description: Master on-call shift handoffs with context transfer, escalation procedures, and documentation. Use when transitioning on-call responsibilities, documenting shift summaries, or improving on-call processes.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/incident-response/skills/on-call-handoff-patterns
 ---
 
 # On-Call Handoff Patterns

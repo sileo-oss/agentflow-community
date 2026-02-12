@@ -1,6 +1,8 @@
 ---
 name: rag-implementation
 description: Build Retrieval-Augmented Generation (RAG) systems for LLM applications with vector databases and semantic search. Use when implementing knowledge-grounded AI, building document Q&A systems, or integrating LLMs with external knowledge bases.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/llm-application-dev/skills/rag-implementation
 ---
 
 # RAG Implementation

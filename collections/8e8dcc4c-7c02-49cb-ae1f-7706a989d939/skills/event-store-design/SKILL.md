@@ -1,6 +1,8 @@
 ---
 name: event-store-design
 description: Design and implement event stores for event-sourced systems. Use when building event sourcing infrastructure, choosing event store technologies, or implementing event persistence patterns.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/backend-development/skills/event-store-design
 ---
 
 # Event Store Design

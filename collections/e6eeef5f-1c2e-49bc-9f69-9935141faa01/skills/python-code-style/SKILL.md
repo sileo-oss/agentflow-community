@@ -1,6 +1,8 @@
 ---
 name: python-code-style
 description: Python code style, linting, formatting, naming conventions, and documentation standards. Use when writing new code, reviewing style, configuring linters, writing docstrings, or establishing project standards.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/python-development/skills/python-code-style
 ---
 
 # Python Code Style & Documentation

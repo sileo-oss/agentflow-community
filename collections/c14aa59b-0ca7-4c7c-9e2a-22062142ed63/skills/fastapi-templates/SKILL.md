@@ -1,6 +1,8 @@
 ---
 name: fastapi-templates
 description: Create production-ready FastAPI projects with async patterns, dependency injection, and comprehensive error handling. Use when building new FastAPI applications or setting up backend API projects.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/api-scaffolding/skills/fastapi-templates
 ---
 
 # FastAPI Project Templates

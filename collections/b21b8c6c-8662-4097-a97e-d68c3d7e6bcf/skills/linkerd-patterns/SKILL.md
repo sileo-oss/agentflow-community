@@ -1,6 +1,8 @@
 ---
 name: linkerd-patterns
 description: Implement Linkerd service mesh patterns for lightweight, security-focused service mesh deployments. Use when setting up Linkerd, configuring traffic policies, or implementing zero-trust networking with minimal overhead.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/cloud-infrastructure/skills/linkerd-patterns
 ---
 
 # Linkerd Patterns

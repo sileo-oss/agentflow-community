@@ -1,6 +1,8 @@
 ---
 name: embedding-strategies
 description: Select and optimize embedding models for semantic search and RAG applications. Use when choosing embedding models, implementing chunking strategies, or optimizing embedding quality for specific domains.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/llm-application-dev/skills/embedding-strategies
 ---
 
 # Embedding Strategies

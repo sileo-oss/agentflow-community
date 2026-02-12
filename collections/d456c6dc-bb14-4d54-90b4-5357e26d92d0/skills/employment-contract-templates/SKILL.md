@@ -1,6 +1,8 @@
 ---
 name: employment-contract-templates
 description: Create employment contracts, offer letters, and HR policy documents following legal best practices. Use when drafting employment agreements, creating HR policies, or standardizing employment documentation.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/hr-legal-compliance/skills/employment-contract-templates
 ---
 
 # Employment Contract Templates

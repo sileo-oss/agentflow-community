@@ -1,6 +1,8 @@
 ---
 name: sast-configuration
 description: Configure Static Application Security Testing (SAST) tools for automated vulnerability detection in application code. Use when setting up security scanning, implementing DevSecOps practices, or automating code vulnerability detection.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/security-scanning/skills/sast-configuration
 ---
 
 # SAST Configuration

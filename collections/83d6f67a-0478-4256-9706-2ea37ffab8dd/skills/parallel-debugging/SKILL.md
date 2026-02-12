@@ -1,6 +1,8 @@
 ---
 name: parallel-debugging
 description: Debug complex issues using competing hypotheses with parallel investigation, evidence collection, and root cause arbitration. Use this skill when debugging bugs with multiple potential causes, performing root cause analysis, or organizing parallel investigation workflows.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/agent-teams/skills/parallel-debugging
 version: 1.0.2
 ---
 

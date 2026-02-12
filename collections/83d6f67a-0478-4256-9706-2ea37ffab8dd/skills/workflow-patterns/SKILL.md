@@ -1,6 +1,8 @@
 ---
 name: workflow-patterns
 description: Use this skill when implementing tasks according to Conductor's TDD workflow, handling phase checkpoints, managing git commits for tasks, or understanding the verification protocol.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/conductor/skills/workflow-patterns
 version: 1.0.0
 ---
 

@@ -1,6 +1,8 @@
 ---
 name: gdpr-data-handling
 description: Implement GDPR-compliant data handling with consent management, data subject rights, and privacy by design. Use when building systems that process EU personal data, implementing privacy controls, or conducting GDPR compliance reviews.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/hr-legal-compliance/skills/gdpr-data-handling
 ---
 
 # GDPR Data Handling

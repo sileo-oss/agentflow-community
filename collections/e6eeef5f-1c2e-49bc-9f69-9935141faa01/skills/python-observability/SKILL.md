@@ -1,6 +1,8 @@
 ---
 name: python-observability
 description: Python observability patterns including structured logging, metrics, and distributed tracing. Use when adding logging, implementing metrics collection, setting up tracing, or debugging production systems.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/python-development/skills/python-observability
 ---
 
 # Python Observability

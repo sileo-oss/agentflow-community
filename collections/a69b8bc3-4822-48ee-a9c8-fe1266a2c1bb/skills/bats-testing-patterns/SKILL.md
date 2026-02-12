@@ -1,6 +1,8 @@
 ---
 name: bats-testing-patterns
 description: Master Bash Automated Testing System (Bats) for comprehensive shell script testing. Use when writing tests for shell scripts, CI/CD pipelines, or requiring test-driven development of shell utilities.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/shell-scripting/skills/bats-testing-patterns
 ---
 
 # Bats Testing Patterns

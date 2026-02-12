@@ -1,6 +1,8 @@
 ---
 name: architecture-patterns
 description: Implement proven backend architecture patterns including Clean Architecture, Hexagonal Architecture, and Domain-Driven Design. Use when architecting complex backend systems or refactoring existing applications for better maintainability.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/backend-development/skills/architecture-patterns
 ---
 
 # Architecture Patterns

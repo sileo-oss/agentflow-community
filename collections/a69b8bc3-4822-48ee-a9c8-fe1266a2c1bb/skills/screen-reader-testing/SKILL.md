@@ -1,6 +1,8 @@
 ---
 name: screen-reader-testing
 description: Test web applications with screen readers including VoiceOver, NVDA, and JAWS. Use when validating screen reader compatibility, debugging accessibility issues, or ensuring assistive technology support.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/accessibility-compliance/skills/screen-reader-testing
 ---
 
 # Screen Reader Testing

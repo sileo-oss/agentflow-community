@@ -1,6 +1,8 @@
 ---
 name: monorepo-management
 description: Master monorepo management with Turborepo, Nx, and pnpm workspaces to build efficient, scalable multi-package repositories with optimized builds and dependency management. Use when setting up monorepos, optimizing builds, or managing shared dependencies.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/developer-essentials/skills/monorepo-management
 ---
 
 # Monorepo Management

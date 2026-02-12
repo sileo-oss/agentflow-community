@@ -1,6 +1,8 @@
 ---
 name: nextjs-app-router-patterns
 description: Master Next.js 14+ App Router with Server Components, streaming, parallel routes, and advanced data fetching. Use when building Next.js applications, implementing SSR/SSG, or optimizing React Server Components.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/frontend-mobile-development/skills/nextjs-app-router-patterns
 ---
 
 # Next.js App Router Patterns
@@ -539,5 +541,5 @@ export async function updateProduct(id: string, data: ProductData) {
 ## Resources
 
 - [Next.js App Router Documentation](https://nextjs.org/docs/app)
-- [Server Components RFC](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md)
+- [Server Components RFC](https://github.com/reactjs/rfcs/tree/main/text/0188-server-components.md)
 - [Vercel Templates](https://vercel.com/templates/next.js)

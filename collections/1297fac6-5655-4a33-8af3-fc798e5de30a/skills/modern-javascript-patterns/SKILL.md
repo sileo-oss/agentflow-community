@@ -1,6 +1,8 @@
 ---
 name: modern-javascript-patterns
 description: Master ES6+ features including async/await, destructuring, spread operators, arrow functions, promises, modules, iterators, generators, and functional programming patterns for writing clean, efficient JavaScript code. Use when refactoring legacy code, implementing modern patterns, or optimizing JavaScript applications.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/javascript-typescript/skills/modern-javascript-patterns
 ---
 
 # Modern JavaScript Patterns

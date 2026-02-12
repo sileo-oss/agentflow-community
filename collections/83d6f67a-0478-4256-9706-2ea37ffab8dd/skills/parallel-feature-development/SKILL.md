@@ -1,6 +1,8 @@
 ---
 name: parallel-feature-development
 description: Coordinate parallel feature development with file ownership strategies, conflict avoidance rules, and integration patterns for multi-agent implementation. Use this skill when decomposing features for parallel development, establishing file ownership boundaries, or managing integration between parallel work streams.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/agent-teams/skills/parallel-feature-development
 version: 1.0.2
 ---
 

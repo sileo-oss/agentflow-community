@@ -1,6 +1,8 @@
 ---
 name: track-management
 description: Use this skill when creating, managing, or working with Conductor tracks - the logical work units for features, bugs, and refactors. Applies to spec.md, plan.md, and track lifecycle operations.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/conductor/skills/track-management
 version: 1.0.0
 ---
 

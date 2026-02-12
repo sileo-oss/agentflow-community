@@ -1,6 +1,8 @@
 ---
 name: accessibility-compliance
 description: Implement WCAG 2.2 compliant interfaces with mobile accessibility, inclusive design patterns, and assistive technology support. Use when auditing accessibility, implementing ARIA patterns, building for screen readers, or ensuring inclusive user experiences.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/ui-design/skills/accessibility-compliance
 ---
 
 # Accessibility Compliance

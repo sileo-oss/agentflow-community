@@ -1,6 +1,8 @@
 ---
 name: attack-tree-construction
 description: Build comprehensive attack trees to visualize threat paths. Use when mapping attack scenarios, identifying defense gaps, or communicating security risks to stakeholders.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/security-scanning/skills/attack-tree-construction
 ---
 
 # Attack Tree Construction

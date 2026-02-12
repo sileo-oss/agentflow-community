@@ -1,6 +1,8 @@
 ---
 name: python-packaging
 description: Create distributable Python packages with proper project structure, setup.py/pyproject.toml, and publishing to PyPI. Use when packaging Python libraries, creating CLI tools, or distributing Python code.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/python-development/skills/python-packaging
 ---
 
 # Python Packaging
@@ -222,7 +224,7 @@ Homepage = "https://github.com/username/my-awesome-package"
 Documentation = "https://my-awesome-package.readthedocs.io"
 Repository = "https://github.com/username/my-awesome-package"
 "Bug Tracker" = "https://github.com/username/my-awesome-package/issues"
-Changelog = "https://github.com/username/my-awesome-package/blob/main/CHANGELOG.md"
+Changelog = "https://github.com/username/my-awesome-package/tree/main/CHANGELOG.md"
 
 [project.scripts]
 my-cli = "my_package.cli:main"

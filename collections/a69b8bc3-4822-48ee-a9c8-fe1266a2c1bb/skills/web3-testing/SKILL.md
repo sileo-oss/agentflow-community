@@ -1,6 +1,8 @@
 ---
 name: web3-testing
 description: Test smart contracts comprehensively using Hardhat and Foundry with unit tests, integration tests, and mainnet forking. Use when testing Solidity contracts, setting up blockchain test suites, or validating DeFi protocols.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/blockchain-web3/skills/web3-testing
 ---
 
 # Web3 Smart Contract Testing

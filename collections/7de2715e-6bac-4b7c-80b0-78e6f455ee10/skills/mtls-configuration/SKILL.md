@@ -1,6 +1,8 @@
 ---
 name: mtls-configuration
 description: Configure mutual TLS (mTLS) for zero-trust service-to-service communication. Use when implementing zero-trust networking, certificate management, or securing internal service communication.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/cloud-infrastructure/skills/mtls-configuration
 ---
 
 # mTLS Configuration

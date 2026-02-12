@@ -1,6 +1,8 @@
 ---
 name: openapi-spec-generation
 description: Generate and maintain OpenAPI 3.1 specifications from code, design-first specs, and validation patterns. Use when creating API documentation, generating SDKs, or ensuring API contract compliance.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/documentation-generation/skills/openapi-spec-generation
 ---
 
 # OpenAPI Spec Generation

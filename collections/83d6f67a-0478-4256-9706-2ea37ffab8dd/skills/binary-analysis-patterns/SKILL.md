@@ -1,6 +1,8 @@
 ---
 name: binary-analysis-patterns
 description: Master binary analysis patterns including disassembly, decompilation, control flow analysis, and code pattern recognition. Use when analyzing executables, understanding compiled code, or performing static analysis on binaries.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/reverse-engineering/skills/binary-analysis-patterns
 ---
 
 # Binary Analysis Patterns

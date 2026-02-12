@@ -1,6 +1,8 @@
 ---
 name: javascript-testing-patterns
 description: Implement comprehensive testing strategies using Jest, Vitest, and Testing Library for unit tests, integration tests, and end-to-end testing with mocking, fixtures, and test-driven development. Use when writing JavaScript/TypeScript tests, setting up test infrastructure, or implementing TDD/BDD workflows.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/javascript-typescript/skills/javascript-testing-patterns
 ---
 
 # JavaScript Testing Patterns

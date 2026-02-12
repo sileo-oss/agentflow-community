@@ -1,6 +1,8 @@
 ---
 name: dbt-transformation-patterns
 description: Master dbt (data build tool) for analytics engineering with model organization, testing, documentation, and incremental strategies. Use when building data transformations, creating data models, or implementing analytics engineering best practices.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/data-engineering/skills/dbt-transformation-patterns
 ---
 
 # dbt Transformation Patterns

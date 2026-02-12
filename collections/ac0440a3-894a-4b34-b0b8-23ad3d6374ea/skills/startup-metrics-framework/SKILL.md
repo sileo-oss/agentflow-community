@@ -1,6 +1,8 @@
 ---
 name: startup-metrics-framework
 description: This skill should be used when the user asks about "key startup metrics", "SaaS metrics", "CAC and LTV", "unit economics", "burn multiple", "rule of 40", "marketplace metrics", or requests guidance on tracking and optimizing business performance metrics.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/startup-business-analyst/skills/startup-metrics-framework
 version: 1.0.0
 ---
 

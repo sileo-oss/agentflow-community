@@ -9,7 +9,7 @@ description: >-
   vulnerabilities, building microservices, or developing production-ready backend systems.
 license: 'MIT version: 1.0.0'
 metadata:
-  source_url: https://github.com/mrgoonie/claudekit-skills/blob/main/.claude/skills/backend-development/SKILL.md
+  source_url: https://github.com/mrgoonie/claudekit-skills/tree/main/.claude/skills/backend-development/SKILL.md
   references/backend-api-design.md: https://agentflowhq.dev/api/v1/content/755a534d-ccf7-428c-9b0a-4697949bf847/references/backend-api-design.md
   references/backend-architecture.md: https://agentflowhq.dev/api/v1/content/755a534d-ccf7-428c-9b0a-4697949bf847/references/backend-architecture.md
   references/backend-authentication.md: https://agentflowhq.dev/api/v1/content/755a534d-ccf7-428c-9b0a-4697949bf847/references/backend-authentication.md

@@ -1,6 +1,8 @@
 ---
 name: postmortem-writing
 description: Write effective blameless postmortems with root cause analysis, timelines, and action items. Use when conducting incident reviews, writing postmortem documents, or improving incident response processes.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/incident-response/skills/postmortem-writing
 ---
 
 # Postmortem Writing

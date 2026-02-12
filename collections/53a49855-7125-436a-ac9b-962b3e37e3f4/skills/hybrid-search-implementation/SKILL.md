@@ -1,6 +1,8 @@
 ---
 name: hybrid-search-implementation
 description: Combine vector and keyword search for improved retrieval. Use when implementing RAG systems, building search engines, or when neither approach alone provides sufficient recall.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/llm-application-dev/skills/hybrid-search-implementation
 ---
 
 # Hybrid Search Implementation

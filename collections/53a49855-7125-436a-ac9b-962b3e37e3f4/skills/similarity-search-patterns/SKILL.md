@@ -1,6 +1,8 @@
 ---
 name: similarity-search-patterns
 description: Implement efficient similarity search with vector databases. Use when building semantic search, implementing nearest neighbor queries, or optimizing retrieval performance.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/llm-application-dev/skills/similarity-search-patterns
 ---
 
 # Similarity Search Patterns

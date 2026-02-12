@@ -1,6 +1,8 @@
 ---
 name: llm-evaluation
 description: Implement comprehensive evaluation strategies for LLM applications using automated metrics, human feedback, and benchmarking. Use when testing LLM performance, measuring AI application quality, or establishing evaluation frameworks.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/llm-application-dev/skills/llm-evaluation
 ---
 
 # LLM Evaluation

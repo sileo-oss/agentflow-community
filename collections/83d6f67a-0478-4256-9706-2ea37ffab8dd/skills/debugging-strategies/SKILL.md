@@ -1,6 +1,8 @@
 ---
 name: debugging-strategies
 description: Master systematic debugging techniques, profiling tools, and root cause analysis to efficiently track down bugs across any codebase or technology stack. Use when investigating bugs, performance issues, or unexpected behavior.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/developer-essentials/skills/debugging-strategies
 ---
 
 # Debugging Strategies

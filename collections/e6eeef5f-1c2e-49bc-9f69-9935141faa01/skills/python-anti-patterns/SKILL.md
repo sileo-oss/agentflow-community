@@ -1,6 +1,8 @@
 ---
 name: python-anti-patterns
 description: Common Python anti-patterns to avoid. Use as a checklist when reviewing code, before finalizing implementations, or when debugging issues that might stem from known bad practices.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/python-development/skills/python-anti-patterns
 ---
 
 # Python Anti-Patterns Checklist

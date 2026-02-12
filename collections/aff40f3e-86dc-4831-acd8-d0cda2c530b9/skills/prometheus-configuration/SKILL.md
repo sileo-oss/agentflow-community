@@ -1,6 +1,8 @@
 ---
 name: prometheus-configuration
 description: Set up Prometheus for comprehensive metric collection, storage, and monitoring of infrastructure and applications. Use when implementing metrics collection, setting up monitoring infrastructure, or configuring alerting systems.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/observability-monitoring/skills/prometheus-configuration
 ---
 
 # Prometheus Configuration

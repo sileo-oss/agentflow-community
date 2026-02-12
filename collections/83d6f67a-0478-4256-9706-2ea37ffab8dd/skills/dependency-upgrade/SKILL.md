@@ -1,6 +1,8 @@
 ---
 name: dependency-upgrade
 description: Manage major dependency version upgrades with compatibility analysis, staged rollout, and comprehensive testing. Use when upgrading framework versions, updating major dependencies, or managing breaking changes in libraries.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/framework-migration/skills/dependency-upgrade
 ---
 
 # Dependency Upgrade

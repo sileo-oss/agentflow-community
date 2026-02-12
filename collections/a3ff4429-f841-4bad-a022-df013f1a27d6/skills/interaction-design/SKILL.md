@@ -1,6 +1,8 @@
 ---
 name: interaction-design
 description: Design and implement microinteractions, motion design, transitions, and user feedback patterns. Use when adding polish to UI interactions, implementing loading states, or creating delightful user experiences.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/ui-design/skills/interaction-design
 ---
 
 # Interaction Design

@@ -1,6 +1,8 @@
 ---
 name: temporal-python-testing
 description: Test Temporal workflows with pytest, time-skipping, and mocking strategies. Covers unit testing, integration testing, replay testing, and local development setup. Use when implementing Temporal workflow tests or debugging test failures.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/backend-development/skills/temporal-python-testing
 ---
 
 # Temporal Python Testing Strategies
@@ -154,5 +156,5 @@ async def test_activity():
 ## Additional References
 
 - Python SDK Testing: docs.temporal.io/develop/python/testing-suite
-- Testing Patterns: github.com/temporalio/temporal/blob/main/docs/development/testing.md
+- Testing Patterns: github.com/temporalio/temporal/tree/main/docs/development/testing.md
 - Python Samples: github.com/temporalio/samples-python

@@ -1,6 +1,8 @@
 ---
 name: bazel-build-optimization
 description: Optimize Bazel builds for large-scale monorepos. Use when configuring Bazel, implementing remote execution, or optimizing build performance for enterprise codebases.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/developer-essentials/skills/bazel-build-optimization
 ---
 
 # Bazel Build Optimization

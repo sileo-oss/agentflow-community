@@ -1,6 +1,8 @@
 ---
 name: react-modernization
 description: Upgrade React applications to latest versions, migrate from class components to hooks, and adopt concurrent features. Use when modernizing React codebases, migrating to React Hooks, or upgrading to latest React versions.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/framework-migration/skills/react-modernization
 ---
 
 # React Modernization

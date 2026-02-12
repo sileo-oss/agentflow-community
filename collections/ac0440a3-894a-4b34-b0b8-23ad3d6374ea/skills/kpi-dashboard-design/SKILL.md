@@ -1,6 +1,8 @@
 ---
 name: kpi-dashboard-design
 description: Design effective KPI dashboards with metrics selection, visualization best practices, and real-time monitoring patterns. Use when building business dashboards, selecting metrics, or designing data visualization layouts.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/business-analytics/skills/kpi-dashboard-design
 ---
 
 # KPI Dashboard Design

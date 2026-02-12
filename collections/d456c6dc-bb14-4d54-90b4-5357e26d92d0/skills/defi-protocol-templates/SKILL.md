@@ -1,6 +1,8 @@
 ---
 name: defi-protocol-templates
 description: Implement DeFi protocols with production-ready templates for staking, AMMs, governance, and lending systems. Use when building decentralized finance applications or smart contract protocols.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/blockchain-web3/skills/defi-protocol-templates
 ---
 
 # DeFi Protocol Templates

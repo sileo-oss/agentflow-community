@@ -1,6 +1,8 @@
 ---
 name: web-component-design
 description: Master React, Vue, and Svelte component patterns including CSS-in-JS, composition strategies, and reusable component architecture. Use when building UI component libraries, designing component APIs, or implementing frontend design systems.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/ui-design/skills/web-component-design
 ---
 
 # Web Component Design

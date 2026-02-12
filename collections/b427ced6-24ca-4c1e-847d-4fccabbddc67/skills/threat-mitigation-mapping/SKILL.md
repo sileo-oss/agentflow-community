@@ -1,6 +1,8 @@
 ---
 name: threat-mitigation-mapping
 description: Map identified threats to appropriate security controls and mitigations. Use when prioritizing security investments, creating remediation plans, or validating control effectiveness.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/security-scanning/skills/threat-mitigation-mapping
 ---
 
 # Threat Mitigation Mapping

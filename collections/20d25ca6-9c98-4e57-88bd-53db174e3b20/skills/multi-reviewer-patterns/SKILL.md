@@ -1,6 +1,8 @@
 ---
 name: multi-reviewer-patterns
 description: Coordinate parallel code reviews across multiple quality dimensions with finding deduplication, severity calibration, and consolidated reporting. Use this skill when organizing multi-reviewer code reviews, calibrating finding severity, or consolidating review results.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/agent-teams/skills/multi-reviewer-patterns
 version: 1.0.2
 ---
 

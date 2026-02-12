@@ -1,6 +1,8 @@
 ---
 name: paypal-integration
 description: Integrate PayPal payment processing with support for express checkout, subscriptions, and refund management. Use when implementing PayPal payments, processing online transactions, or building e-commerce checkout flows.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/payment-processing/skills/paypal-integration
 ---
 
 # PayPal Integration

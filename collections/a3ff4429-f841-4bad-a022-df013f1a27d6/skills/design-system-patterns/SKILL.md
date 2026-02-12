@@ -1,6 +1,8 @@
 ---
 name: design-system-patterns
 description: Build scalable design systems with design tokens, theming infrastructure, and component architecture patterns. Use when creating design tokens, implementing theme switching, building component libraries, or establishing design system foundations.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/ui-design/skills/design-system-patterns
 ---
 
 # Design System Patterns

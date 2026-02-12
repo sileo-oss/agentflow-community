@@ -1,6 +1,8 @@
 ---
 name: database-migration
 description: Execute database migrations across ORMs and platforms with zero-downtime strategies, data transformation, and rollback procedures. Use when migrating databases, changing schemas, performing data transformations, or implementing zero-downtime deployment strategies.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/framework-migration/skills/database-migration
 ---
 
 # Database Migration

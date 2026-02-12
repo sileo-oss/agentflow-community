@@ -1,6 +1,8 @@
 ---
 name: react-native-design
 description: Master React Native styling, navigation, and Reanimated animations for cross-platform mobile development. Use when building React Native apps, implementing navigation patterns, or creating performant animations.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/ui-design/skills/react-native-design
 ---
 
 # React Native Design

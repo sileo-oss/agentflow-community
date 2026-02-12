@@ -1,6 +1,8 @@
 ---
 name: uv-package-manager
 description: Master the uv package manager for fast Python dependency management, virtual environments, and modern Python project workflows. Use when setting up Python projects, managing dependencies, or optimizing Python development workflows with uv.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/python-development/skills/uv-package-manager
 ---
 
 # UV Package Manager

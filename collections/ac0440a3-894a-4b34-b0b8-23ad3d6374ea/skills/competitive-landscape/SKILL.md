@@ -1,6 +1,8 @@
 ---
 name: competitive-landscape
 description: This skill should be used when the user asks to "analyze competitors", "assess competitive landscape", "identify differentiation", "evaluate market positioning", "apply Porter's Five Forces", or requests competitive strategy analysis.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/startup-business-analyst/skills/competitive-landscape
 version: 1.0.0
 ---
 

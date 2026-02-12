@@ -1,4 +1,4 @@
 {
-  "name": "Ci Cd",
+  "name": "CI/CD",
   "description": "CI/CD pipeline practices including GitOps workflows with ArgoCD and Flux, GitHub Actions templates, GitLab CI patterns, deployment pipeline design, and changelog automation for automated software delivery."
 }

@@ -1,6 +1,8 @@
 ---
 name: saga-orchestration
 description: Implement saga patterns for distributed transactions and cross-aggregate workflows. Use when coordinating multi-step business processes, handling compensating transactions, or managing long-running workflows.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/backend-development/skills/saga-orchestration
 ---
 
 # Saga Orchestration

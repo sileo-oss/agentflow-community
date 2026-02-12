@@ -1,6 +1,8 @@
 ---
 name: team-composition-patterns
 description: Design optimal agent team compositions with sizing heuristics, preset configurations, and agent type selection. Use this skill when deciding team size, selecting agent types, or configuring team presets for multi-agent workflows.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/agent-teams/skills/team-composition-patterns
 version: 1.0.2
 ---
 

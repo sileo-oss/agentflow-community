@@ -1,6 +1,8 @@
 ---
 name: nx-workspace-patterns
 description: Configure and optimize Nx monorepo workspaces. Use when setting up Nx, configuring project boundaries, optimizing build caching, or implementing affected commands.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/developer-essentials/skills/nx-workspace-patterns
 ---
 
 # Nx Workspace Patterns

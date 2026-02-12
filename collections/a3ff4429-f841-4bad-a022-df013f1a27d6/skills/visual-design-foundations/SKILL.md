@@ -1,6 +1,8 @@
 ---
 name: visual-design-foundations
 description: Apply typography, color theory, spacing systems, and iconography principles to create cohesive visual designs. Use when establishing design tokens, building style guides, or improving visual hierarchy and consistency.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/ui-design/skills/visual-design-foundations
 ---
 
 # Visual Design Foundations

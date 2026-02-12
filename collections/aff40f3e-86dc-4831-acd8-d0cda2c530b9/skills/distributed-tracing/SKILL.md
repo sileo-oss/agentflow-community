@@ -1,6 +1,8 @@
 ---
 name: distributed-tracing
 description: Implement distributed tracing with Jaeger and Tempo to track requests across microservices and identify performance bottlenecks. Use when debugging microservices, analyzing request flows, or implementing observability for distributed systems.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/observability-monitoring/skills/distributed-tracing
 ---
 
 # Distributed Tracing

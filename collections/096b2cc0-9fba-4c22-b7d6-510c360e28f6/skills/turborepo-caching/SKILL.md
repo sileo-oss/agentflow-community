@@ -1,6 +1,8 @@
 ---
 name: turborepo-caching
 description: Configure Turborepo for efficient monorepo builds with local and remote caching. Use when setting up Turborepo, optimizing build pipelines, or implementing distributed caching.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/developer-essentials/skills/turborepo-caching
 ---
 
 # Turborepo Caching

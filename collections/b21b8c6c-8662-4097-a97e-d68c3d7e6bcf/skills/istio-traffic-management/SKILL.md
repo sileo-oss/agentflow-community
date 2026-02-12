@@ -1,6 +1,8 @@
 ---
 name: istio-traffic-management
 description: Configure Istio traffic management including routing, load balancing, circuit breakers, and canary deployments. Use when implementing service mesh traffic policies, progressive delivery, or resilience patterns.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/cloud-infrastructure/skills/istio-traffic-management
 ---
 
 # Istio Traffic Management

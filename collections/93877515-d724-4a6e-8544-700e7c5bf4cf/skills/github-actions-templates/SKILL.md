@@ -1,6 +1,8 @@
 ---
 name: github-actions-templates
 description: Create production-ready GitHub Actions workflows for automated testing, building, and deploying applications. Use when setting up CI/CD with GitHub Actions, automating development workflows, or creating reusable workflow templates.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/cicd-automation/skills/github-actions-templates
 ---
 
 # GitHub Actions Templates

@@ -1,6 +1,8 @@
 ---
 name: team-communication-protocols
 description: Structured messaging protocols for agent team communication including message type selection, plan approval, shutdown procedures, and anti-patterns to avoid. Use this skill when establishing team communication norms, handling plan approvals, or managing team shutdown.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/agent-teams/skills/team-communication-protocols
 version: 1.0.2
 ---
 

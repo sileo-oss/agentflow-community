@@ -1,6 +1,8 @@
 ---
 name: slo-implementation
 description: Define and implement Service Level Indicators (SLIs) and Service Level Objectives (SLOs) with error budgets and alerting. Use when establishing reliability targets, implementing SRE practices, or measuring service performance.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/observability-monitoring/skills/slo-implementation
 ---
 
 # SLO Implementation

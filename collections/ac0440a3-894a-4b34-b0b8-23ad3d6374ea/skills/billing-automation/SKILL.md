@@ -1,6 +1,8 @@
 ---
 name: billing-automation
 description: Build automated billing systems for recurring payments, invoicing, subscription lifecycle, and dunning management. Use when implementing subscription billing, automating invoicing, or managing recurring payment systems.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/payment-processing/skills/billing-automation
 ---
 
 # Billing Automation

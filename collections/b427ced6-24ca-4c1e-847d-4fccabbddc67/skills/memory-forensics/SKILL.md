@@ -1,6 +1,8 @@
 ---
 name: memory-forensics
 description: Master memory forensics techniques including memory acquisition, process analysis, and artifact extraction using Volatility and related tools. Use when analyzing memory dumps, investigating incidents, or performing malware analysis from RAM captures.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/reverse-engineering/skills/memory-forensics
 ---
 
 # Memory Forensics

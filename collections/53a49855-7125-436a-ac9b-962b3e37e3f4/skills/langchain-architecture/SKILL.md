@@ -1,6 +1,8 @@
 ---
 name: langchain-architecture
 description: Design LLM applications using LangChain 1.x and LangGraph for agents, memory, and tool integration. Use when building LangChain applications, implementing AI agents, or creating complex LLM workflows.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/llm-application-dev/skills/langchain-architecture
 ---
 
 # LangChain & LangGraph Architecture

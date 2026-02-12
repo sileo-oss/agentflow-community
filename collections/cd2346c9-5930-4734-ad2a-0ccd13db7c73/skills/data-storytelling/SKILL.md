@@ -1,6 +1,8 @@
 ---
 name: data-storytelling
 description: Transform data into compelling narratives using visualization, context, and persuasive structure. Use when presenting analytics to stakeholders, creating data reports, or building executive presentations.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/business-analytics/skills/data-storytelling
 ---
 
 # Data Storytelling

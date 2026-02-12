@@ -1,6 +1,8 @@
 ---
 name: react-native-architecture
 description: Build production React Native apps with Expo, navigation, native modules, offline sync, and cross-platform patterns. Use when developing mobile apps, implementing native integrations, or architecting React Native projects.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/frontend-mobile-development/skills/react-native-architecture
 ---
 
 # React Native Architecture

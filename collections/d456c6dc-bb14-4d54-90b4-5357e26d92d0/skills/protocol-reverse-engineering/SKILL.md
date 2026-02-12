@@ -1,6 +1,8 @@
 ---
 name: protocol-reverse-engineering
 description: Master network protocol reverse engineering including packet analysis, protocol dissection, and custom protocol documentation. Use when analyzing network traffic, understanding proprietary protocols, or debugging network communication.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/reverse-engineering/skills/protocol-reverse-engineering
 ---
 
 # Protocol Reverse Engineering

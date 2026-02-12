@@ -1,6 +1,8 @@
 ---
 name: python-testing-patterns
 description: Implement comprehensive testing strategies with pytest, fixtures, mocking, and test-driven development. Use when writing Python tests, setting up test suites, or implementing testing best practices.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/python-development/skills/python-testing-patterns
 ---
 
 # Python Testing Patterns

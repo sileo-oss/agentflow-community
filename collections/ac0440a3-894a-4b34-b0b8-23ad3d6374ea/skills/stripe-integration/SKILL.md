@@ -1,6 +1,8 @@
 ---
 name: stripe-integration
 description: Implement Stripe payment processing for robust, PCI-compliant payment flows including checkout, subscriptions, and webhooks. Use when integrating Stripe payments, building subscription systems, or implementing secure checkout flows.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/payment-processing/skills/stripe-integration
 ---
 
 # Stripe Integration

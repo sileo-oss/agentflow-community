@@ -1,6 +1,8 @@
 ---
 name: vector-index-tuning
 description: Optimize vector index performance for latency, recall, and memory. Use when tuning HNSW parameters, selecting quantization strategies, or scaling vector search infrastructure.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/llm-application-dev/skills/vector-index-tuning
 ---
 
 # Vector Index Tuning

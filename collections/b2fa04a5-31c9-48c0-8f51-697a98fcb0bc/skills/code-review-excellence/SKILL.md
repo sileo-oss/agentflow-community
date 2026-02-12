@@ -1,6 +1,8 @@
 ---
 name: code-review-excellence
 description: Master effective code review practices to provide constructive feedback, catch bugs early, and foster knowledge sharing while maintaining team morale. Use when reviewing pull requests, establishing review standards, or mentoring developers.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/developer-essentials/skills/code-review-excellence
 ---
 
 # Code Review Excellence

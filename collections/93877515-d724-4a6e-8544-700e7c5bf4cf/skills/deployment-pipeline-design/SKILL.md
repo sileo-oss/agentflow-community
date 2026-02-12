@@ -1,6 +1,8 @@
 ---
 name: deployment-pipeline-design
 description: Design multi-stage CI/CD pipelines with approval gates, security checks, and deployment orchestration. Use when architecting deployment workflows, setting up continuous delivery, or implementing GitOps practices.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/cicd-automation/skills/deployment-pipeline-design
 ---
 
 # Deployment Pipeline Design

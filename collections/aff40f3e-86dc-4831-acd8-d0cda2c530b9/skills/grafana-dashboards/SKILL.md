@@ -1,6 +1,8 @@
 ---
 name: grafana-dashboards
 description: Create and manage production Grafana dashboards for real-time visualization of system and application metrics. Use when building monitoring dashboards, visualizing metrics, or creating operational observability interfaces.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/observability-monitoring/skills/grafana-dashboards
 ---
 
 # Grafana Dashboards

@@ -1,6 +1,8 @@
 ---
 name: market-sizing-analysis
 description: This skill should be used when the user asks to "calculate TAM", "determine SAM", "estimate SOM", "size the market", "calculate market opportunity", "what's the total addressable market", or requests market sizing analysis for a startup or business opportunity.
+metadata:
+  source_url: https://github.com/wshobson/agents/tree/main/plugins/startup-business-analyst/skills/market-sizing-analysis
 version: 1.0.0
 ---
 
