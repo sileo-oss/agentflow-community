@@ -153,6 +153,7 @@ You can make your own collections public without adding them to this repo:
 
 - Third-party content must include license files in `LICENSES/`.
 - `public_collections.yaml` serves as the attribution registry for all collections.
+- Third party skills must specify metadata.source_url as part of the frontmatter
 
 ## License
 

@@ -35,3 +35,6 @@ collection_ids:
 - 48b66322-552b-44cf-a9c6-88f85ffd7cf7  # Terraform
 - a69b8bc3-4822-48ee-a9c8-fe1266a2c1bb  # Testing
 - a3ff4429-f841-4bad-a022-df013f1a27d6  # Web Design
+
+# MIT licensed agent-skills based on http://github.com/obra/superpowers
+- 4d2aaaf7-b168-428c-80b2-b6e9a953541f  # Obra Superpowers
