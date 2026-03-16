@@ -16,6 +16,10 @@ on:
         description: 'Force full sync (ignore LAST_SYNC_COMMIT)'
         type: boolean
         default: false
+      collection_id:
+        description: 'Sync a specific collection by UUID (optional)'
+        type: string
+        required: false
 
 permissions:
   contents: read
@@ -32,7 +36,7 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0  # Need full history for git diff
 
@@ -57,7 +61,7 @@ jobs:
 
     steps:
       - name: Checkout collections repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0  # Need full history for git diff
 
@@ -75,7 +79,7 @@ jobs:
           fi
 
       - name: Sync collections to Production API
-        run: | 
+        run: |
           echo "current LAST_SYNC_COMMIT is: $LAST_SYNC_COMMIT"
           echo "starting the sync-collections script for PRODUCTION"
           node /app/scripts/sync-collections.js
@@ -85,6 +89,7 @@ jobs:
           LAST_SYNC_COMMIT: ${{ env.LAST_SYNC_COMMIT }}
           DRY_RUN: ${{ github.event.inputs.dry_run }}
           COLLECTIONS_DIR: ${{ github.workspace }}/collections
+          TARGET_COLLECTION_ID: ${{ github.event.inputs.collection_id }}
 
       - name: Update production sync state
         if: success() && github.event.inputs.dry_run != 'true'
