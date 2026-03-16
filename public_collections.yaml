@@ -38,3 +38,6 @@ collection_ids:
 
 # MIT licensed agent-skills based on http://github.com/obra/superpowers
 - 4d2aaaf7-b168-428c-80b2-b6e9a953541f  # Obra Superpowers
+
+# Frontend design skills based on https://github.com/pbakaus/impeccable
+- 383e3739-7853-449b-b22b-c2b15367aedd  # Impeccable - Frontend design skills
